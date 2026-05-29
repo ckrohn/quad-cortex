@@ -1,0 +1,331 @@
+= Quad Cortex Modern Metal Band Preset Documentation
+:toc:
+:toclevels: 3
+:sectnums:
+:icons: font
+
+This repository documents a complete Neural DSP Quad Cortex setup for a modern metalcore/deathcore band using two 7-string guitars and bass.
+
+The goal is a dry, tight, aggressive band sound with clear separation between instruments:
+
+* Guitar 1 uses a 6505-style rhythm foundation.
+* Guitar 2 uses an EVH/5150III-style rhythm foundation.
+* Bass uses a split clean-low plus dirty-mid/high approach so the low end stays stable while the bass remains audible through dense guitars.
+
+These files are written as GitHub-compatible AsciiDoc. They are intended as practical build sheets for manually creating the presets on the Quad Cortex or in Cortex Control. They are not `.qcp` preset-export files.
+
+== Instrument documentation
+
+[cols="1,2,2",options="header"]
+|===
+| Instrument
+| Main document
+| Contents
+
+| 6505 guitar
+| link:qc_6505_guitar_asciidoc/index.adoc[qc_6505_guitar_asciidoc/index.adoc]
+| Rhythm, clean, and lead scenes for the PV-505 Lead guitar preset.
+
+| EV101 guitar
+| link:qc_ev101_guitar_asciidoc/index.adoc[qc_ev101_guitar_asciidoc/index.adoc]
+| Rhythm, clean, and lead scenes for the EV101IIIS Red 6L6 100W guitar preset.
+
+| Bass
+| link:qc_bass_asciidoc/index.adoc[qc_bass_asciidoc/index.adoc]
+| Split-bass routing, clean-low path, dirty-mid/high path, mixer, post-processing, scenes, and quick adjustments.
+|===
+
+== Expected repository layout
+
+Place this top-level `README.adoc` next to the three instrument folders:
+
+[source,text]
+----
+.
+├── README.adoc
+├── qc_6505_guitar_asciidoc/
+│   ├── README.adoc
+│   ├── index.adoc
+│   ├── rhythm.adoc
+│   ├── clean.adoc
+│   └── lead.adoc
+├── qc_ev101_guitar_asciidoc/
+│   ├── README.adoc
+│   ├── index.adoc
+│   ├── rhythm.adoc
+│   ├── clean.adoc
+│   └── lead.adoc
+└── qc_bass_asciidoc/
+    ├── README.adoc
+    ├── index.adoc
+    ├── main-routing.adoc
+    ├── clean-low-path.adoc
+    ├── dirty-mid-high-path.adoc
+    ├── mixer-post-processing.adoc
+    ├── scenes-and-variants.adoc
+    └── quick-adjustments.adoc
+----
+
+== Preset concept
+
+=== Guitar 1: 6505 / PV-505 Lead
+
+The 6505 guitar is the more immediate and aggressive side. It is voiced for tight pick attack, controlled low resonance, and forward upper mids.
+
+Core rhythm configuration:
+
+[source,text]
+----
+In 1
+→ Green 808
+→ PV-505 Lead
+→ Adaptive Gate (S/C)
+→ IR Loader: Single (M)
+→ Low-High Cut
+→ Parametric-8
+→ Gain
+→ Out
+----
+
+Primary rhythm IR:
+
+[source,text]
+----
+York Audio MES 412 TRAD
+MPT / 48k
+Mix 05
+421 + 57 blend
+----
+
+Main document: link:qc_6505_guitar_asciidoc/index.adoc[6505 guitar index]
+
+=== Guitar 2: EV101IIIS Red 6L6 100W
+
+The EV101 guitar is the smoother, wider, more polished side. It complements the 6505 side by using a larger Mesa Oversized-style IR and slightly different EQ emphasis.
+
+Core rhythm configuration:
+
+[source,text]
+----
+In 1
+→ Green 808
+→ EV101IIIS Red 6L6 100W
+→ Adaptive Gate (S/C)
+→ IR Loader: Single (M)
+→ Low-High Cut
+→ Parametric-8
+→ Gain
+→ Out
+----
+
+Primary rhythm IR:
+
+[source,text]
+----
+York Audio MES 412 OS-V2
+MPT / 48k
+Mix 01
+57 + 121 blend
+----
+
+Main document: link:qc_ev101_guitar_asciidoc/index.adoc[EV101 guitar index]
+
+=== Bass
+
+The bass preset is designed to supply the real low-end mass while leaving the guitars tight and uncluttered.
+
+Core routing:
+
+[source,text]
+----
+In 1
+→ VCA Comp
+→ Splitter: Crossover
+
+Path A, clean low path:
+Low-High Cut
+→ VCA Comp
+→ Parametric-8
+→ Gain
+→ Mixer
+
+Path B, dirty mid/high path:
+Low-High Cut
+→ Microtubes B3K
+→ Amped Super Valve
+→ IR Loader: Single (M)
+→ Adaptive Gate (S/C)
+→ Low-High Cut
+→ Parametric-8
+→ Gain
+→ Mixer
+
+Mixer
+→ Parametric-8
+→ Gain
+→ Out
+----
+
+Primary dirty-path bass IR:
+
+[source,text]
+----
+York Audio AMPG 410 HS
+48k Mix file
+----
+
+Main document: link:qc_bass_asciidoc/index.adoc[bass index]
+
+== Scene overview
+
+[cols="1,1,2",options="header"]
+|===
+| Instrument
+| Scene
+| Purpose
+
+| 6505 guitar
+| Rhythm
+| Dry, tight, aggressive PV-505 Lead rhythm tone.
+
+| 6505 guitar
+| Clean
+| Brighter, wider clean tone with more chorus and filtered delay/reverb.
+
+| 6505 guitar
+| Lead
+| Aggressive 6505 lead voice with more mids, lower gate intensity, delay, and restrained plate reverb.
+
+| EV101 guitar
+| Rhythm
+| Smoother EV101 rhythm tone using a bigger Mesa OS-style IR.
+
+| EV101 guitar
+| Clean
+| Warmer clean tone with subtler chorus and shorter/darker ambience.
+
+| EV101 guitar
+| Lead
+| Smoother lead voice with focused mids, moderate delay, and very controlled plate reverb.
+
+| Bass
+| Main rhythm
+| Split clean-low and dirty-mid/high bass tone for dense metal arrangements.
+
+| Bass
+| Tight staccato / breakdown
+| More controlled low-mid content and less dirty-path level for tight stops.
+
+| Bass
+| Bigger chorus / open parts
+| More low-path weight and slightly more open response for sustained sections.
+|===
+
+== Third-party IR assumptions
+
+The documentation references third-party IRs, but the IR files themselves are not included in this repository.
+
+[cols="1,2,2",options="header"]
+|===
+| Instrument
+| Recommended IR
+| Used for
+
+| 6505 guitar
+| York Audio MES 412 TRAD, Mix 05, MPT / 48k
+| Main rhythm and lead guitar cab sound.
+
+| EV101 guitar
+| York Audio MES 412 OS-V2, Mix 01, MPT / 48k
+| Main rhythm and lead guitar cab sound.
+
+| Bass
+| York Audio AMPG 410 HS, 48k Mix file
+| Dirty mid/high bass path.
+|===
+
+If these IRs are unavailable, use the closest available Mesa Traditional 4x12 V30, Mesa Oversized 4x12 V30, and Ampeg-style 4x10 or 8x10 bass cab IRs. After substituting IRs, revisit low cuts, high cuts, and the 200 Hz to 400 Hz EQ region first.
+
+== Build order
+
+Use this order when recreating the full setup on the Quad Cortex:
+
+. Build the two rhythm guitar presets first.
+. Load the selected guitar IRs.
+. Match guitar rhythm levels at rehearsal volume.
+. Add clean and lead scenes for both guitars.
+. Build the bass split preset.
+. Balance bass against the two rhythm guitars.
+. Fine-tune gates only after the full band is playing at real volume.
+
+== Level-matching guidance
+
+Do not level-match presets by eye. Use the band mix.
+
+General target:
+
+[cols="1,2",options="header"]
+|===
+| Sound
+| Relative level
+
+| Rhythm guitar
+| Baseline reference.
+
+| Clean guitar
+| Similar perceived loudness to rhythm, usually requiring more final gain because clean tones are less compressed.
+
+| Lead guitar
+| Slightly above rhythm, enough to speak without becoming disconnected from the band.
+
+| Bass
+| Loud enough that guitars feel larger when the bass enters, not smaller or blurrier.
+|===
+
+== Important frequency roles
+
+[cols="1,2",options="header"]
+|===
+| Range
+| Priority
+
+| 35 Hz to 60 Hz
+| Bass low foundation.
+
+| 70 Hz to 100 Hz
+| Bass punch and interaction with kick drum.
+
+| 100 Hz to 180 Hz
+| Shared weight area. Keep controlled.
+
+| 200 Hz to 400 Hz
+| Main mud zone for guitars and bass. Cut carefully when palm mutes blur.
+
+| 700 Hz to 1.2 kHz
+| Bass growl and guitar body.
+
+| 1.2 kHz to 2.8 kHz
+| Guitar pick attack, bass definition, and lead presence.
+
+| 3.5 kHz to 5 kHz
+| Bite, rasp, and potential harshness.
+
+| Above 6.5 kHz
+| Mostly string noise, fizz, and ambience. Use high cuts deliberately.
+|===
+
+== Notes for Quad Cortex implementation
+
+* Use the block names exactly as written in the instrument documents.
+* Use scene-specific parameter changes for rhythm, clean, and lead.
+* Keep rhythm scenes dry: no chorus, no delay, no reverb.
+* Keep guitar rhythm amp gain lower than expected. The Fishman Fluence Modern pickups and Green 808 boost already add enough front-end intensity.
+* Use final `Gain` blocks for scene level matching instead of changing amp gain.
+* Use the bass dirty path for audibility, not for sub-low weight.
+* Recheck all gates at rehearsal volume. Bedroom-volume gate settings often fail in a live room.
+
+== Quick navigation
+
+* link:qc_6505_guitar_asciidoc/index.adoc[6505 guitar documentation]
+* link:qc_ev101_guitar_asciidoc/index.adoc[EV101 guitar documentation]
+* link:qc_bass_asciidoc/index.adoc[Bass documentation]
