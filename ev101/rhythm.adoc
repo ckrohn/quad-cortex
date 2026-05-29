@@ -1,0 +1,137 @@
+= Scene A - Rhythm - Guitar 2 - EV101IIIS Red 6L6 100W
+:toc: macro
+:toclevels: 3
+:sectanchors:
+:icons: font
+
+toc::[]
+
+== Purpose
+
+This is the polished, tight EV101 side. Path A is active and Path B is muted at the Mixer.
+
+[source,text]
+----
+Path A:
+Green 808 -> EV101IIIS Red 6L6 100W -> Adaptive Gate (S/C) -> IR Loader: Single (M)
+
+Post-mixer:
+Low-High Cut -> Parametric-8 -> Gain -> Output
+----
+
+== Mixer state
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Mixer parameter |Setting
+|Level A |0.0 dB
+|Level B |-60.0 dB
+|Pan A / Pan B |C / C
+|Phase |Off
+|Mixer Level |0.0 dB
+|===
+
+== Green 808
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Overdrive |0.00
+|Tone |5.8
+|Level |7.8
+|Bypass |Off
+|===
+
+== EV101IIIS Red 6L6 100W
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Gain |3.8
+|Bass |2.4
+|Mid |5.7
+|Treble |5.1
+|Presence |4.5
+|Resonance / Depth |2.0
+|Master |3.5
+|Level |Unity, usually -4.0 dB to -2.0 dB
+|===
+
+== Adaptive Gate (S/C)
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Noise Reduction |82.0%
+|Source / Trigger |In 1
+|Bypass |Off
+|===
+
+== IR Loader: Single (M)
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|IR |York Audio MES 412 OS-V2 Mix 01, MPT, 48k
+|Mic blend |57 + 121
+|Level |0.0 dB
+|Pan |C
+|Bypass |Off
+|===
+
+== Post-mixer Low-High Cut
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Low Cut |82 Hz
+|High Cut |8.4 kHz
+|===
+
+== Post-mixer Parametric-8
+
+[%autowidth,cols="1,1,1,1,1",options="header"]
+|===
+|Band |Type |Frequency |Gain |Q
+|1 |Bell |120 Hz |-1.8 dB |1.00
+|2 |Bell |240 Hz |-2.8 dB |1.10
+|3 |Bell |420 Hz |-1.2 dB |1.00
+|4 |Bell |850 Hz |+1.0 dB |0.80
+|5 |Bell |1.45 kHz |+1.5 dB |0.90
+|6 |Bell |2.60 kHz |+1.2 dB |1.00
+|7 |Bell |3.90 kHz |-1.0 dB |1.80
+|8 |Bell |6.30 kHz |-0.8 dB |1.40
+|===
+
+== Time/modulation/reverb blocks
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Block |Rhythm scene setting
+|Chief CE2W (M) |Bypassed
+|Digital Delay (M) |Bypassed
+|Plate |Bypassed
+|Final Gain |0.0 dB starting point, adjust for scene volume
+|===
+
+== Optional tight-stop block: Simple Gate
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Placement |Between Green 808 and EV101IIIS Red 6L6 100W
+|Threshold |55.0
+|Range |100%
+|Default use |Bypassed unless stops are loose. Bypass for clean and lead.
+|===
+
+== Rhythm correction table
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Problem |Change
+|Palm mutes are muddy |Lower Resonance / Depth to 1.5, raise Low Cut to 86 Hz, or cut 240 Hz another -1 dB
+|Tone is too smooth |Add +0.5 to +1.0 dB at 1.45 kHz or 2.60 kHz
+|Tone is fizzy |Lower High Cut to 7.8 kHz or cut 3.90 kHz another -1 dB
+|Pick attack is too clicky |Lower Green 808 Tone to 5.0 and reduce 2.60 kHz by -1 dB
+|===

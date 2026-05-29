@@ -1,0 +1,168 @@
+= Scene C - Lead - Guitar 1 - 6505 / PV-505 Lead
+:toc: macro
+:toclevels: 3
+:sectanchors:
+:icons: font
+
+toc::[]
+
+== Purpose
+
+This keeps the 6505 identity but shifts the tone toward sustain, upper-mid focus, and controlled ambience. Path A is active and Path B is muted.
+
+[source,text]
+----
+Path A:
+Green 808 -> PV-505 Lead -> Adaptive Gate (S/C) -> IR Loader: Single (M)
+
+Post-mixer:
+Low-High Cut -> Parametric-8 -> Digital Delay (M) -> Plate -> Gain -> Output
+----
+
+== Mixer state
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Mixer parameter |Setting
+|Level A |0.0 dB
+|Level B |-60.0 dB
+|Pan A / Pan B |C / C
+|Phase |Off
+|Mixer Level |0.0 dB
+|===
+
+== Green 808
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Overdrive |0.15
+|Tone |5.0
+|Level |7.2
+|Bypass |Off
+|===
+
+== PV-505 Lead
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Gain |3.8
+|Bass |2.0
+|Mid |6.4
+|Treble |4.9
+|Master |3.2
+|Resonance |1.5
+|Presence |3.7
+|Level |Unity, then trim with final Gain
+|===
+
+== Adaptive Gate (S/C)
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Noise Reduction |76.0%
+|Source / Trigger |In 1
+|Bypass |Off
+|===
+
+== IR Loader: Single (M)
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|IR |York Audio MES 412 TRAD Mix 05, MPT, 48k
+|Mic blend |421 + 57
+|Level |0.0 dB
+|Pan |C
+|Bypass |Off
+|===
+
+== Post-mixer Low-High Cut
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Low Cut |95 Hz
+|High Cut |7.8 kHz
+|===
+
+== Post-mixer Parametric-8
+
+[%autowidth,cols="1,1,1,1,1",options="header"]
+|===
+|Band |Type |Frequency |Gain |Q
+|1 |Bell |120 Hz |-2.0 dB |1.00
+|2 |Bell |220 Hz |-3.0 dB |1.15
+|3 |Bell |360 Hz |-1.5 dB |1.10
+|4 |Bell |750 Hz |+1.2 dB |0.90
+|5 |Bell |1.25 kHz |+2.2 dB |0.90
+|6 |Bell |2.35 kHz |+1.5 dB |1.00
+|7 |Bell |3.75 kHz |-0.8 dB |1.70
+|8 |Bell |6.20 kHz |-1.2 dB |1.30
+|===
+
+== Chief CE2W (M)
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Bypass |On
+|Optional setting |Use only for stylized smoother leads: Mix 6%, Rate 10%, Depth 12%, Type CE2-C, Out Mode Mono, Output 0.0 dB
+|===
+
+== Digital Delay (M)
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Mix |14%
+|Feedback |30%
+|High Pass |240 Hz
+|Low Pass |4200 Hz
+|Sync |Off
+|Sync Note |Ignored
+|Delay Time |430 ms
+|Mod Rate |0.20 Hz
+|Mod Depth |8%
+|Trails |On
+|Bypass |Off
+|===
+
+== Plate
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Mix |8%
+|Decay |48%
+|Pre Delay |20.0 ms
+|High Pass |250 Hz
+|Low Pass |3600 Hz
+|LF Damping |55%
+|HF Damping |70%
+|Mod Depth |8%
+|Trails |On
+|Bypass |Off
+|===
+
+== Final Gain
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Gain |+3.0 dB
+|Use |Lead scene volume trim
+|===
+
+== Lead correction table
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Problem |Change
+|Lead sustain gets chopped |Lower Adaptive Gate to 70% to 72%
+|Lead delay clouds fast runs |Delay Mix 8% to 10%, Feedback 20% to 24%
+|Lead is buried |Raise final Gain by +0.5 to +1.0 dB or add +1 dB at 1.25 kHz
+|Lead is fizzy |Lower High Cut to 7.2 to 7.5 kHz or cut 3.75 kHz another -1 dB
+|===

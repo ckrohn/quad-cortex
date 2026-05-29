@@ -1,0 +1,170 @@
+= Bass Preset - Path B - Dirty Mid/High Path
+:toc: macro
+:toclevels: 3
+:sectanchors:
+:icons: font
+
+toc::[]
+
+== Purpose
+
+This path provides bass aggression. It should sound ugly and somewhat thin by itself. In the full preset, it gives note definition through the two guitars.
+
+[source,text]
+----
+Path B:
+Low-High Cut -> Microtubes B3K -> Amped Super Valve -> IR Loader: Single (M)
+-> Adaptive Gate (S/C) -> Low-High Cut -> Parametric-8 -> Gain -> Mixer
+----
+
+== Pre-drive Low-High Cut
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Low Cut |180 Hz
+|High Cut |7.5 kHz
+|===
+
+== Pre-drive cut adjustments
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Problem |Change
+|Distortion makes the low end fuzzy |Raise Low Cut to 200 Hz
+|Distorted bass feels disconnected from lows |Lower Low Cut to 160 Hz
+|Too much pick scratch |Lower High Cut to 6.2 kHz
+|Not enough clank |Raise High Cut to 8.5 kHz
+|===
+
+== Microtubes B3K
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Drive |5.8
+|Growl |On
+|Midboost |On
+|Tone |4.8
+|Level |5.0
+|Blend |7.0
+|===
+
+== Microtubes B3K fine-tuning
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Problem |Change
+|Too much fizz |Tone 4.0, Drive 5.0
+|Not enough aggression |Drive 6.5, Tone 5.3
+|Bass masks the guitars |Lower Blend to 5.5
+|Bass disappears |Keep Drive the same and raise dirty path level
+|Palm-muted guitar riffs lose tightness |Raise Path B Low Cut to 200 Hz
+|Bass sounds like fuzz instead of grind |Drive 4.8, Blend 8.0
+|===
+
+== Amped Super Valve
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Gain |4.2
+|Bass |2.0
+|Midrange |6.5
+|Frequency |3.0
+|Treble |4.2
+|Ultra Lo |Off
+|Ultra Hi |Off
+|Master |4.0
+|Output / Level |Unity, usually around -3.0 dB to 0.0 dB
+|===
+
+== Amp fine-tuning
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Problem |Change
+|Bass grind is too woolly |Bass 1.0, Midrange 7.0
+|Bass lacks authority |Master 4.5, Midrange 6.8
+|Too much scratch |Treble 3.5, B3K Tone 4.2
+|Too dark |Treble 4.8, B3K Tone 5.4
+|Guitars feel smaller when bass enters |Bass 1.5, raise Path B Low Cut to 200 Hz
+|===
+
+== IR Loader: Single (M)
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|IR |York Audio AMPG 410 HS, 48k Mix file
+|Level |0.0 dB
+|Pan |C
+|===
+
+== Recommended bass IRs
+
+[%autowidth,cols="1,1,1",options="header"]
+|===
+|Choice |Use when |Notes
+|York Audio AMPG 410 HS |First choice |Based on an Ampeg Heritage SVT-410HLF-style cab; use a Mix file
+|OwnHammer AMPG Bass |York 410 is too big or extended |Start with a 410HLF mix, not a 210-only IR
+|ML Sound Lab AMPG Bass Cab Pack |Studio-style 4x10 option |Use a mix file and avoid subkick-heavy options on the dirty path
+|Shift Line Bass HD IR Pack |Classic 8x10 punch |Use if you want less modern 410HLF low extension
+|810 Amped VT 90s |Stock QC fallback |Use if no third-party IR is available
+|===
+
+== Adaptive Gate (S/C)
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Noise Reduction |42.0%
+|Source / Trigger |In 1
+|===
+
+Use this only to clean up hiss from the distorted path. Do not clamp the bass like a rhythm guitar.
+
+== Gate fine-tuning
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Problem |Change
+|Hiss between stops |Noise Reduction 50%
+|Sustained bass notes die |Noise Reduction 30% to 35%
+|Bass feels disconnected |Turn the gate off
+|Dead stops are too loose |Check muting technique first, then try 55%
+|===
+
+== Post-distortion Low-High Cut
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Low Cut |180 Hz
+|High Cut |6.8 kHz
+|===
+
+== Post-distortion Parametric-8
+
+[%autowidth,cols="1,1,1,1,1",options="header"]
+|===
+|Band |Type |Frequency |Gain |Q
+|1 |Bell |220 Hz |-2.5 dB |1.10
+|2 |Bell |350 Hz |-2.0 dB |1.00
+|3 |Bell |520 Hz |-1.5 dB |1.10
+|4 |Bell |750 Hz |+1.5 dB |0.90
+|5 |Bell |1.15 kHz |+2.0 dB |0.90
+|6 |Bell |1.85 kHz |+1.8 dB |1.00
+|7 |Bell |2.90 kHz |+0.8 dB |1.10
+|8 |Bell |4.20 kHz |-1.8 dB |1.60
+|===
+
+== Path B Gain
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Gain |-3.0 dB
+|===
+
+Start with the dirty path slightly lower than the clean path. It should be clearly audible, but it should not sound like a separate distorted guitar.

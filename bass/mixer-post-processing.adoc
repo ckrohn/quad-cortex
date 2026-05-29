@@ -1,0 +1,72 @@
+= Bass Preset - Mixer and Post Processing
+:toc: macro
+:toclevels: 3
+:sectanchors:
+:icons: font
+
+toc::[]
+
+== Mixer settings
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Level A |0.0 dB
+|Pan A |C
+|Level B |-3.5 dB
+|Pan B |C
+|Phase |Off
+|Mixer Level |-3.0 dB
+|Mute |Off
+|===
+
+== Phase check
+
+Play hard low-string palm mutes with the full band at rehearsal volume.
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Result |Setting
+|Low end gets bigger and tighter with Phase Off |Keep Phase Off
+|Low end gets smaller when paths are blended |Turn Phase On
+|Difference is minor |Use the setting with more punch around 70 to 120 Hz
+|===
+
+== Final post-mixer Parametric-8
+
+[%autowidth,cols="1,1,1,1,1",options="header"]
+|===
+|Band |Type |Frequency |Gain |Q
+|1 |Bell |55 Hz |+0.8 dB |0.80
+|2 |Bell |85 Hz |+1.2 dB |0.90
+|3 |Bell |130 Hz |-1.0 dB |1.00
+|4 |Bell |240 Hz |-2.5 dB |1.10
+|5 |Bell |500 Hz |-1.5 dB |1.00
+|6 |Bell |900 Hz |+1.0 dB |0.90
+|7 |Bell |1.60 kHz |+1.2 dB |0.90
+|8 |Bell |3.80 kHz |-1.0 dB |1.50
+|===
+
+== What the post-mix EQ does
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Area |Function
+|55 to 85 Hz |Main low-end mass
+|130 Hz |Prevents low-end bloom
+|240 Hz |Main mud control
+|500 Hz |Removes boxiness
+|900 Hz |Bass growl
+|1.60 kHz |Note definition through guitars
+|3.80 kHz |Controls scratch
+|===
+
+== Final Gain
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Gain |Preset volume trim, usually -4.0 dB to 0.0 dB
+|===
+
+Use this final Gain block for preset volume matching. Do not use compressor output, amp output, or dirty path level as the master volume.

@@ -1,0 +1,137 @@
+= Scene A - Rhythm - Guitar 1 - 6505 / PV-505 Lead
+:toc: macro
+:toclevels: 3
+:sectanchors:
+:icons: font
+
+toc::[]
+
+== Purpose
+
+This is the main dry 6505 rhythm scene. Path A is active and Path B is muted at the Mixer.
+
+[source,text]
+----
+Path A:
+Green 808 -> PV-505 Lead -> Adaptive Gate (S/C) -> IR Loader: Single (M)
+
+Post-mixer:
+Low-High Cut -> Parametric-8 -> Gain -> Output
+----
+
+== Mixer state
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Mixer parameter |Setting
+|Level A |0.0 dB
+|Level B |-60.0 dB
+|Pan A / Pan B |C / C
+|Phase |Off
+|Mixer Level |0.0 dB
+|===
+
+== Green 808
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Overdrive |0.00
+|Tone |5.2
+|Level |7.4
+|Bypass |Off
+|===
+
+== PV-505 Lead
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Gain |3.2
+|Bass |2.2
+|Mid |5.9
+|Treble |4.7
+|Master |3.0
+|Resonance |1.7
+|Presence |4.0
+|Level |Unity, usually -4.0 dB to -2.0 dB
+|===
+
+== Adaptive Gate (S/C)
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Noise Reduction |82.0%
+|Source / Trigger |In 1
+|Bypass |Off
+|===
+
+== IR Loader: Single (M)
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|IR |York Audio MES 412 TRAD Mix 05, MPT, 48k
+|Mic blend |421 + 57
+|Level |0.0 dB
+|Pan |C
+|Bypass |Off
+|===
+
+== Post-mixer Low-High Cut
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Low Cut |84 Hz
+|High Cut |8.0 kHz
+|===
+
+== Post-mixer Parametric-8
+
+[%autowidth,cols="1,1,1,1,1",options="header"]
+|===
+|Band |Type |Frequency |Gain |Q
+|1 |Bell |115 Hz |-1.0 dB |1.00
+|2 |Bell |220 Hz |-3.2 dB |1.15
+|3 |Bell |360 Hz |-1.8 dB |1.10
+|4 |Bell |720 Hz |+0.8 dB |0.90
+|5 |Bell |1.25 kHz |+1.4 dB |0.90
+|6 |Bell |2.35 kHz |+1.2 dB |1.00
+|7 |Bell |3.75 kHz |-1.2 dB |1.70
+|8 |Bell |6.20 kHz |-1.0 dB |1.30
+|===
+
+== Time/modulation/reverb blocks
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Block |Rhythm scene setting
+|Chief CE2W (M) |Bypassed
+|Digital Delay (M) |Bypassed
+|Plate |Bypassed
+|Final Gain |0.0 dB starting point, adjust for scene volume
+|===
+
+== Optional tight-stop block: Simple Gate
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Placement |Between Green 808 and PV-505 Lead
+|Threshold |52.0
+|Range |100%
+|Default use |Bypassed unless stops are loose. Bypass for clean and lead.
+|===
+
+== Rhythm correction table
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Problem |Change
+|Palm mutes are muddy |Lower Resonance to 1.2, raise Low Cut to 88 Hz, or cut 220 Hz another -1 dB
+|Tone is fizzy |Lower High Cut to 7.4 to 7.6 kHz or lower Presence to 3.4
+|Powerchords smear |Lower Gain to 2.9 and cut 360 Hz another -1 dB
+|Tone disappears with the full band |Raise Mid to 6.3 or boost 1.25 kHz another +0.8 dB
+|===

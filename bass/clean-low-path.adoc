@@ -1,0 +1,88 @@
+= Bass Preset - Path A - Clean Low Path
+:toc: macro
+:toclevels: 3
+:sectanchors:
+:icons: font
+
+toc::[]
+
+== Purpose
+
+This path is the clean foundation. It should sound stable, controlled, centered, and relatively plain by itself.
+
+[source,text]
+----
+Path A:
+Low-High Cut -> VCA Comp -> Parametric-8 -> Gain -> Mixer
+----
+
+== Low-High Cut
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Low Cut |35 Hz
+|High Cut |180 Hz
+|===
+
+== Tuning-specific low cut
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Bass tuning |Low Cut
+|E standard |40 Hz
+|B standard |35 Hz
+|Drop A |32 Hz
+|Drop G |30 Hz
+|Small PA / bad room |40 to 45 Hz
+|===
+
+== VCA Comp
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Threshold |-26.0 dB
+|Ratio |5.0:1
+|Attack |30 ms
+|Release |130 ms
+|Makeup / Output |+3.0 dB
+|Mix |85%
+|===
+
+== Low-path compressor fine-tuning
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Problem |Change
+|Low end pumps |Release 170 ms
+|Low end feels slow |Release 100 ms
+|Attack is too soft |Attack 22 ms
+|Low B or A jumps out |Threshold -30 dB
+|Low end is too flat |Mix 70%
+|===
+
+== Parametric-8
+
+[%autowidth,cols="1,1,1,1,1",options="header"]
+|===
+|Band |Type |Frequency |Gain |Q
+|1 |Bell |45 Hz |+1.0 dB |0.80
+|2 |Bell |70 Hz |+1.5 dB |0.90
+|3 |Bell |105 Hz |-1.0 dB |1.00
+|4 |Bell |145 Hz |-1.8 dB |1.10
+|5 |Bell |180 Hz |-2.0 dB |1.20
+|6 |Bell |250 Hz |-3.0 dB |1.20
+|7 |Bell |500 Hz |-6.0 dB |0.70
+|8 |Bell |1.00 kHz |-8.0 dB |0.70
+|===
+
+== Gain
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Gain |0.0 dB
+|===
+
+Leave this at 0.0 dB initially. Use it only if you need to rebalance the clean low path against the dirty path.

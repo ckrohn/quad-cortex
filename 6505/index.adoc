@@ -1,0 +1,127 @@
+= Quad Cortex Preset - Guitar 1 - 6505 / PV-505 Lead
+:toc: macro
+:toclevels: 3
+:sectanchors:
+:icons: font
+
+Rhythm, clean, and lead scene documentation for the 6505-side guitarist.
+
+toc::[]
+
+== Preset target
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Item |Setting
+|Instrument context |7-string guitar with hot active Fishman Fluence Modern pickups
+|Band context |Two guitar metalcore/deathcore band, dry modern rhythm tone
+|Primary role |Tighter, nastier, more forward guitar side
+|Main third-party IR |York Audio MES 412 TRAD Mix 05, MPT, 48k, 421 + 57
+|Scene A |Rhythm
+|Scene B |Clean
+|Scene C |Lead
+|===
+
+NOTE: Use the final Gain block for preset and scene volume matching. Do not use amp gain as a volume control. Match levels at rehearsal volume.
+
+== File map
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|File |Purpose
+|link:rhythm.adoc[rhythm.adoc] |Scene A - dry modern rhythm channel
+|link:clean.adoc[clean.adoc] |Scene B - brighter, wider clean channel
+|link:lead.adoc[lead.adoc] |Scene C - 6505 lead channel
+|===
+
+== Global preset structure
+
+Build this as one Quad Cortex preset with a dirty path and a clean path. Use scene-specific Mixer levels and scene-specific parameter values.
+
+[source,text]
+----
+In 1
+-> Splitter: A/B
+
+Path A, dirty rhythm/lead:
+Green 808 -> optional Simple Gate -> PV-505 Lead -> Adaptive Gate (S/C) -> IR Loader: Single (M)
+
+Path B, clean:
+VCA Comp -> Rols Jazz CH120 -> 212 Rols Jazz '87
+
+Mixer
+-> Low-High Cut -> Parametric-8 -> Chief CE2W (M) -> Digital Delay (M) -> Plate -> Gain -> Output
+----
+
+== In 1
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Input Gain |-6.0 dB
+|Input Gate |Off
+|Rule |If hard palm mutes clip the input, lower Input Gain to -9.0 dB. If input is very low, raise to -3.0 dB.
+|===
+
+== Splitter: A/B
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Type |A/B
+|Stereo |Off
+|Level To A |0.0 dB
+|Level To B |0.0 dB
+|Mute |Off
+|===
+
+== Mixer scene switching
+
+[%autowidth,cols="1,1,1,1",options="header"]
+|===
+|Mixer parameter |Scene A: Rhythm |Scene B: Clean |Scene C: Lead
+|Level A |0.0 dB |-60.0 dB |0.0 dB
+|Pan A |C |C |C
+|Level B |-60.0 dB |0.0 dB |-60.0 dB
+|Pan B |C |C |C
+|Phase |Off |Off |Off
+|Mixer Level |0.0 dB |0.0 dB |0.0 dB
+|===
+
+If your Mixer minimum is not exactly -60.0 dB, set the inactive path as low as the QC allows. The goal is no leakage from the inactive path.
+
+== Scene status summary
+
+[%autowidth,cols="1,1,1,1",options="header"]
+|===
+|Block or path |Rhythm |Clean |Lead
+|Path A dirty |Active |Muted at Mixer |Active
+|Path B clean |Muted at Mixer |Active |Muted at Mixer
+|Green 808 |On |Path muted |On
+|PV-505 Lead |On |Path muted |On
+|Adaptive Gate (S/C) |On |Path muted |On
+|TRAD Mix 05 IR |On |Path muted |On
+|Clean VCA Comp |Path muted |On |Path muted
+|Rols Jazz CH120 |Path muted |On |Path muted
+|212 Rols Jazz '87 |Path muted |On |Path muted
+|Chief CE2W (M) |Bypassed |On |Bypassed
+|Digital Delay (M) |Bypassed |On |On
+|Plate |Bypassed |On |On
+|Final Gain |0.0 dB start |+3.5 dB |+3.0 dB
+|===
+
+== Fast corrections
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Problem |Change
+|Rhythm palm mutes muddy |Lower Resonance to 1.2, raise Low Cut to 88 Hz, or cut 220 Hz another -1 dB
+|Rhythm fizz |Lower High Cut to 7.4 to 7.6 kHz or lower Presence to 3.4
+|Clean is boomy |Raise clean Low Cut to 125 to 135 Hz
+|Clean chorus is too obvious |Chief CE2W Mix 18% and Depth 30%
+|Lead sustain gets chopped |Adaptive Gate 70% to 72%
+|Lead delay clouds fast runs |Delay Mix 8% to 10%, Feedback 20% to 24%
+|Lead buried |Raise final Gain by +0.5 to +1.0 dB or add +1 dB at 1.25 kHz
+|===
+
+Keep rhythm scenes dry. Use delay and reverb only in clean and lead scenes. Mute the inactive path at the Mixer, not only by bypassing blocks.

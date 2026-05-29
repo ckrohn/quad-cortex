@@ -1,0 +1,168 @@
+= Scene C - Lead - Guitar 2 - EV101IIIS Red 6L6 100W
+:toc: macro
+:toclevels: 3
+:sectanchors:
+:icons: font
+
+toc::[]
+
+== Purpose
+
+This is the smoother EV101 lead scene with more mids, less resonance, and controlled delay/reverb. Path A is active and Path B is muted.
+
+[source,text]
+----
+Path A:
+Green 808 -> EV101IIIS Red 6L6 100W -> Adaptive Gate (S/C) -> IR Loader: Single (M)
+
+Post-mixer:
+Low-High Cut -> Parametric-8 -> Digital Delay (M) -> Plate -> Gain -> Output
+----
+
+== Mixer state
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Mixer parameter |Setting
+|Level A |0.0 dB
+|Level B |-60.0 dB
+|Pan A / Pan B |C / C
+|Phase |Off
+|Mixer Level |0.0 dB
+|===
+
+== Green 808
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Overdrive |0.10
+|Tone |5.4
+|Level |7.3
+|Bypass |Off
+|===
+
+== EV101IIIS Red 6L6 100W
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Gain |4.3
+|Bass |2.1
+|Mid |6.3
+|Treble |4.9
+|Presence |4.0
+|Resonance / Depth |1.6
+|Master |3.7
+|Level |Unity, then trim with final Gain
+|===
+
+== Adaptive Gate (S/C)
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Noise Reduction |76.0%
+|Source / Trigger |In 1
+|Bypass |Off
+|===
+
+== IR Loader: Single (M)
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|IR |York Audio MES 412 OS-V2 Mix 01, MPT, 48k
+|Mic blend |57 + 121
+|Level |0.0 dB
+|Pan |C
+|Bypass |Off
+|===
+
+== Post-mixer Low-High Cut
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Low Cut |92 Hz
+|High Cut |8.0 kHz
+|===
+
+== Post-mixer Parametric-8
+
+[%autowidth,cols="1,1,1,1,1",options="header"]
+|===
+|Band |Type |Frequency |Gain |Q
+|1 |Bell |120 Hz |-1.8 dB |1.00
+|2 |Bell |240 Hz |-2.5 dB |1.10
+|3 |Bell |420 Hz |-1.2 dB |1.00
+|4 |Bell |850 Hz |+1.3 dB |0.80
+|5 |Bell |1.45 kHz |+2.0 dB |0.90
+|6 |Bell |2.60 kHz |+1.5 dB |1.00
+|7 |Bell |3.90 kHz |-0.8 dB |1.80
+|8 |Bell |6.30 kHz |-1.1 dB |1.40
+|===
+
+== Chief CE2W (M)
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Bypass |On
+|Optional setting |Use only for stylized smoother leads: Mix 5%, Rate 9%, Depth 10%, Type CE2-C, Out Mode Mono, Output 0.0 dB
+|===
+
+== Digital Delay (M)
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Mix |12%
+|Feedback |26%
+|High Pass |260 Hz
+|Low Pass |3900 Hz
+|Sync |Off
+|Sync Note |Ignored
+|Delay Time |390 ms
+|Mod Rate |0.25 Hz
+|Mod Depth |7%
+|Trails |On
+|Bypass |Off
+|===
+
+== Plate
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Mix |7%
+|Decay |44%
+|Pre Delay |20.0 ms
+|High Pass |260 Hz
+|Low Pass |3400 Hz
+|LF Damping |58%
+|HF Damping |72%
+|Mod Depth |6%
+|Trails |On
+|Bypass |Off
+|===
+
+== Final Gain
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Gain |+2.8 dB
+|Use |Lead scene volume trim
+|===
+
+== Lead correction table
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Problem |Change
+|Lead sustain gets chopped |Lower Adaptive Gate to 70% to 72%
+|Lead delay clouds harmonized leads |Delay Mix 8% to 10%, Feedback 20% to 24%
+|Lead is buried |Raise final Gain by +0.5 to +1.0 dB or add +1 dB at 1.45 kHz
+|Lead is fizzy |Lower High Cut to 7.4 to 7.6 kHz or cut 3.90 kHz another -1 dB
+|===
