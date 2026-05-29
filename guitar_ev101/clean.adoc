@@ -1,0 +1,199 @@
+= Scene B - Clean - EV101 Guitar - EV101IIIS Red 6L6 100W
+:toc: macro
+:toclevels: 3
+:sectanchors:
+:icons: font
+
+NOTE: These are manual build notes for the Quad Cortex. They are not preset export files. Treat values as starting points and level-match at rehearsal volume.
+
+toc::[]
+
+== Target
+
+The EV101 player clean scene is warmer and less chorused than the 6505 side. It fills space without duplicating the brighter clean texture. The clean scene uses Path B only. It should support atmospheric parts without putting uncontrolled low-end under the bass.
+
+== Active routing
+
+[source,text]
+----
+Path A dirty path muted at Mixer.
+
+Path B active:
+VCA Comp -> US DLX 65 Reissue -> 112 US DLX SC64
+
+Post Mixer:
+Low-High Cut -> Parametric-8 -> Chief CE2W (M) -> Digital Delay (M) -> Plate -> Gain -> Output
+----
+
+
+== Mixer state
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Level A |-60.0 dB |Mutes the high-gain path so no distorted sound leaks into clean.
+|Level B |0.0 dB |Clean path is active.
+|Pan A / Pan B |C / C |Mono routing keeps both guitarists predictable live.
+|Phase |Off |Normal phase.
+|Mixer Level |0.0 dB |No scene volume change here.
+|===
+
+
+== VCA Comp
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Threshold |-22.0 dB |Slightly lighter than the 6505 clean because this side should feel more open.
+|Ratio |3.0:1 |Enough control for clean dynamics without making the guitar feel clamped.
+|Attack |18 ms |Lets more transient through than the 6505 clean, which keeps this part warmer and more natural.
+|Release |120 ms |Smooth recovery for open chords.
+|Makeup |+2.0 dB |Restores level lost to compression.
+|Mix |70% |A bit less compressed signal than the 6505 side for separation.
+|Bypass |Off |Compression is active in the clean scene.
+|===
+
+
+The clean compressor controls active-pickup peaks and makes arpeggiated parts more even. It is not meant to squash the guitar into a pop clean tone. Keep enough attack for pick definition.
+
+== US DLX 65 Reissue
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Volume |3.0 |Clean but a little more pushed than the Rols Jazz clean. Lower it if the Fishmans make it gritty.
+|Bass |3.6 |Warm body without allowing clean low strings to bloom.
+|Middle |5.6 |More midrange than a scooped clean so it stays audible live.
+|Treble |5.0 |Controlled top end. This side is intentionally warmer than the 6505 clean.
+|Level |0.0 dB |Initial block level. Final scene volume is set later.
+|Bypass |Off |This is the active clean amp when Path B is selected.
+|===
+
+
+This clean amp is chosen because it gives a separate identity from the high-gain amp. Cleaning up a high-gain amp block is less predictable than using a real clean path.
+
+== 112 US DLX SC64
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Cab block |112 US DLX SC64 |A clean-appropriate cab keeps the clean scene from sounding like the V30 rhythm cab.
+|Mic/cab controls |Reset to default |Start from the default cab voice. The post-EQ handles final fit.
+|Level |0.0 dB |Neutral cab level.
+|Pan |C |Mono routing.
+|Phase |Normal |Default polarity unless a phase issue appears.
+|Bypass |Off |Cab is active for the clean path.
+|===
+
+
+== Post-mixer Low-High Cut
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Low Cut |120 Hz |Slightly higher than the 6505 clean to prevent the warmer amp from blooming.
+|High Cut |8.8 kHz |Keeps the clean tone smooth and less glassy than the 6505 side.
+|===
+
+
+The clean low cut is higher than the rhythm low cut because clean chords have more sustained low-frequency energy. That sustained low-end can mask the bass more than short distorted palm mutes.
+
+== Post-mixer Parametric-8
+
+[%autowidth,cols="1,1,1,1,1,3",options="header"]
+|===
+|Band |Type |Frequency |Gain |Q |Purpose
+|1 |Bell |110 Hz |-1.5 dB |1.00 |Reduces clean low-end bloom.
+|2 |Bell |240 Hz |-2.2 dB |1.10 |Main mud cut.
+|3 |Bell |480 Hz |-1.0 dB |1.00 |Removes boxiness from the warmer amp/cab combination.
+|4 |Bell |700 Hz |+0.4 dB |0.90 |Adds modest body without duplicating the 6505 clean.
+|5 |Bell |1.10 kHz |+0.9 dB |0.90 |Keeps clean parts intelligible in the band.
+|6 |Bell |2.10 kHz |+0.5 dB |1.00 |Adds mild pick clarity.
+|7 |Bell |3.30 kHz |-1.0 dB |1.50 |Softens hard attack.
+|8 |Bell |6.40 kHz |-0.8 dB |1.30 |Keeps the warmer clean polished rather than bright.
+|===
+
+
+The clean EQ is designed to remove boom, keep chord detail, and control active-pickup attack. The mid boosts are modest because the clean scene should sit in the mix, not dominate it unless the arrangement requires it.
+
+== Chief CE2W (M)
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Mix |14% |Subtle chorus so this clean does not copy the wider 6505 clean.
+|Rate |14% |Slow and understated.
+|Sync |Off |The modulation should not lock to tempo.
+|Sync Note |Ignored when Sync is Off |No tempo subdivision is used.
+|Depth |26% |Moderate-low depth keeps this clean stable and warm.
+|Type |CE2-C |Same chorus type for compatibility, lower mix/depth for contrast.
+|Out Mode |Mono |Consistent mono translation and no artificial stereo spread.
+|Output |0.0 dB |No chorus level compensation.
+|Bypass |Off |Chorus is active but subtle.
+|===
+
+
+The two guitarists use different chorus depths and mixes. This keeps the clean section wide and layered without both guitars producing the same modulation pattern.
+
+== Digital Delay (M)
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Mix |10% |Less wet than the 6505 clean so both guitars do not smear together.
+|Feedback |22% |Shorter repeat decay for a warmer supporting clean.
+|High Pass |200 Hz |Keeps repeats above the bass and clean low strings.
+|Low Pass |4000 Hz |Darker repeats than the 6505 clean.
+|Sync |Off |Fixed time avoids identical repeats with the other guitar.
+|Sync Note |Ignored when Sync is Off |No tempo subdivision is active.
+|Delay Time |380 ms |Different from the 6505 side to prevent stacked repeat timing.
+|Mod Rate |0.45 Hz |Slightly faster than Guitar 1 but still subtle.
+|Mod Depth |12% |Light movement in the repeats.
+|Trails |On |Natural decay after switching scenes.
+|Bypass |Off |Delay is active for the clean scene.
+|===
+
+
+The delay is filtered and relatively quiet. Low-passing the repeats keeps them behind the dry guitar, and high-passing the repeats prevents low-end buildup.
+
+== Plate
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Mix |13% |Less spacious than the 6505 clean so the warmer tone stays defined.
+|Decay |60% |Medium reverb tail.
+|Pre Delay |20.0 ms |Keeps dry attack clear.
+|High Pass |220 Hz |Removes low-frequency reverb buildup.
+|Low Pass |3000 Hz |Darker than the 6505 clean reverb.
+|LF Damping |50% |Controls low reverb tail.
+|HF Damping |68% |Smooths the upper tail.
+|Mod Depth |14% |Small movement for depth.
+|Trails |On |Natural decay on scene changes.
+|Bypass |Off |Reverb is active for the clean scene.
+|===
+
+
+The plate reverb is darker and filtered. Bright, full-range reverb makes clean guitars sound impressive alone but can wash over vocals, cymbals, and lead melodies in a dense metal arrangement.
+
+== Final Gain
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Gain |+3.5 dB |Clean sounds are less compressed than high-gain rhythm, so they usually need a final level lift. Match this at band volume.
+|Bypass |Off |Use this block for clean scene volume instead of compressor makeup or amp level.
+|===
+
+
+== Clean correction workflow
+
+[%autowidth,cols="2,2,3",options="header"]
+|===
+|Problem |Change |Reason
+|Clean is boomy |Raise Low Cut to 125 to 135 Hz and reduce the 240 Hz band by another -0.5 to -1 dB |Sustained clean low end is the usual cause.
+|Clean is too thin |Lower Low Cut to 100 to 110 Hz and add +0.5 dB around 700 to 900 Hz |This restores body without adding sub-low clutter.
+|Clean clips or crunches |Lower clean amp Volume by 0.5 to 1.0 |Hot active pickups can push clean amps harder than expected.
+|Chorus is too obvious |Lower Chief CE2W Mix by 4 to 8 percentage points and reduce Depth |Chorus depth and mix create the perception of pitch movement.
+|Delay or reverb clouds the part |Lower Delay Mix to 8 to 10% and Plate Mix to 9 to 12% |Ambience should support the clean part, not become the part.
+|===

@@ -1,0 +1,141 @@
+= EV101 Guitar - EV101IIIS Red 6L6 100W
+:toc: macro
+:toclevels: 3
+:sectanchors:
+:icons: font
+
+NOTE: These are manual build notes for the Quad Cortex. They are not preset export files. Treat values as starting points and level-match at rehearsal volume.
+
+toc::[]
+
+== Role
+
+Smoother, wider, more polished guitar side. This preset is designed for a 7-string guitar with hot active Fishman Fluence Modern pickups in a two-guitar metalcore/deathcore band.
+
+== Scene documents
+
+[%autowidth,cols="1,2,3",options="header"]
+|===
+|Scene |File |Purpose
+|Scene A: Rhythm |link:rhythm.adoc[rhythm.adoc] |Dry modern rhythm tone with tight palm mutes and no time effects.
+|Scene B: Clean |link:clean.adoc[clean.adoc] |Dedicated clean path with compression, clean amp/cab, chorus, delay, and plate reverb.
+|Scene C: Lead |link:lead.adoc[lead.adoc] |High-gain lead tone with more mids, less gate, delay, plate, and a final volume lift.
+|===
+
+
+== Global routing
+
+Build this as one Quad Cortex preset with a dirty path and a clean path. The scene change is handled by the Mixer, not by relying only on bypass states.
+
+[source,text]
+----
+In 1
+-> Splitter: A/B
+
+Path A, dirty rhythm/lead:
+Green 808 -> EV101IIIS Red 6L6 100W -> Adaptive Gate (S/C) -> IR Loader: Single (M)
+
+Path B, clean:
+VCA Comp -> US DLX 65 Reissue -> 112 US DLX SC64
+
+Mixer
+-> Low-High Cut
+-> Parametric-8
+-> Chief CE2W (M)
+-> Digital Delay (M)
+-> Plate
+-> Gain
+-> Output
+----
+
+
+== Input settings
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Input Gain |-6.0 dB |Hot active pickups can overload the first block and make the amp feel congested. Start at -6.0 dB and adjust only if the input meter requires it.
+|Input Gate |Off |Use the dedicated gate later in the chain. The input gate is too global for a preset that has clean, rhythm, and lead scenes.
+|===
+
+
+== Splitter settings
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Type |A/B |The preset needs two separate paths: a dirty path and a clean path.
+|Stereo |Off |The preset is mono for reliable live translation and to avoid phase complications with two guitarists.
+|Level To A |0.0 dB |No gain change into the dirty path.
+|Level To B |0.0 dB |No gain change into the clean path.
+|Mute |Off |Path selection is handled at the Mixer with scene-specific levels.
+|===
+
+
+== Mixer scene switching
+
+[%autowidth,cols="1,1,1,1,3",options="header"]
+|===
+|Mixer parameter |Rhythm |Clean |Lead |Why
+|Level A |0.0 dB |-60.0 dB |0.0 dB |Path A is dirty rhythm/lead. Muting it in clean prevents high-gain leakage.
+|Pan A |C |C |C |Both guitar presets are mono for consistency and FOH translation.
+|Level B |-60.0 dB |0.0 dB |-60.0 dB |Path B is clean. It is muted in rhythm and lead scenes.
+|Pan B |C |C |C |No artificial stereo spread is used in one player preset.
+|Phase |Off |Off |Off |Use normal phase unless a specific cab or split-path phase issue is heard.
+|Mixer Level |0.0 dB |0.0 dB |0.0 dB |Scene volume is handled at the final Gain block instead.
+|===
+
+
+If the Quad Cortex does not show exactly `-60.0 dB`, set the inactive path as low as the device allows. The practical target is silence from the inactive path.
+
+== Scene status overview
+
+[%autowidth,cols="2,1,1,1,3",options="header"]
+|===
+|Block or path |Rhythm |Clean |Lead |Reason
+|Path A dirty |Active |Muted |Active |Rhythm and lead use the high-gain amp. Clean uses a separate clean amp.
+|Path B clean |Muted |Active |Muted |Clean has its own amp/cab and effects balance.
+|Green 808 |On |Path muted |On |The boost is part of the dirty path only.
+|EV101IIIS Red 6L6 100W |On |Path muted |On |Same amp identity for rhythm and lead.
+|Adaptive Gate (S/C) |On |Path muted |On, lower reduction |Tighter gate for rhythm, more sustain for lead.
+|York Audio MES 412 OS-V2 Mix 01, MPT, 48k |On |Path muted |On |The lead keeps the same cab identity as rhythm.
+|Clean compressor |Path muted |On |Path muted |Clean needs dynamic control before the clean amp.
+|US DLX 65 Reissue |Path muted |On |Path muted |Dedicated clean amp avoids compromised high-gain cleanup.
+|Chief CE2W (M) |Bypassed |On |Bypassed |Chorus is used for clean width, not for the main lead sound.
+|Digital Delay (M) |Bypassed |On |On |Delay is used for clean ambience and lead sustain.
+|Plate |Bypassed |On |On, lower mix |Reverb is useful for clean/lead only.
+|===
+
+
+== Recommended IR
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|IR Loader block |Single (M) |A single mono IR is tighter and simpler than an internal stereo or dual IR blend.
+|IR file |York Audio MES 412 OS-V2 Mix 01, MPT, 48k |Selected as the primary cab voice for this guitar side.
+|Mic blend |57 + 121 |Chosen to complement the other guitarist rather than duplicate the same midrange.
+|IR Loader Level |0.0 dB |Keep the IR block neutral and use amp/output/final Gain for level management.
+|Pan |C |The preset remains mono. Stereo placement should happen at the mixer or front of house, not inside one guitar preset.
+|===
+
+
+== Volume matching workflow
+
+. Match rhythm scenes first with both guitarists playing the same riff.
+. Add bass and confirm palm mutes get heavier, not blurrier.
+. Set clean scenes slightly below or equal to rhythm unless the song needs cleans to dominate.
+. Set lead scenes around `+2.5 dB` to `+3.5 dB` over rhythm using final Gain only.
+. Re-check at rehearsal volume because high-gain compression can make bedroom-level balances misleading.
+
+== Fast global corrections
+
+[%autowidth,cols="2,2,3",options="header"]
+|===
+|Problem |Change |Reason
+|Input clips on hard palm mutes |Lower Input Gain to -9.0 dB |Input clipping creates harshness and mud before any block can fix it.
+|Clean and dirty path leak together |Check Mixer Level A/B for every scene |Bypassing blocks alone is not as reliable as muting the inactive path at the Mixer.
+|Rhythm sounds large alone but messy with bass |Reduce 220 to 360 Hz and keep the low cut where specified |Low-mid buildup is the usual cause of full-band mud.
+|Lead is not loud enough |Raise final Gain by +0.5 dB to +1.0 dB |This changes level without changing amp saturation.
+|Scene changes leave too much ambience |Turn Trails Off on delay/reverb for songs with hard stops |Trails are musical for transitions but can conflict with dead stops.
+|===

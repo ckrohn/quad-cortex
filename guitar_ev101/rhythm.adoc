@@ -1,0 +1,163 @@
+= Scene A - Rhythm - EV101 Guitar - EV101IIIS Red 6L6 100W
+:toc: macro
+:toclevels: 3
+:sectanchors:
+:icons: font
+
+NOTE: These are manual build notes for the Quad Cortex. They are not preset export files. Treat values as starting points and level-match at rehearsal volume.
+
+toc::[]
+
+== Target
+
+The EV101 side supplies width, polish, and a smoother Mesa Oversized-style cab body. It should complement the 6505 side, not copy it. The rhythm scene is intentionally dry: no chorus, no delay, no reverb, no doubler, and no stereo widening.
+
+== Active routing
+
+[source,text]
+----
+Path A active:
+Green 808 -> EV101IIIS Red 6L6 100W -> Adaptive Gate (S/C) -> IR Loader: Single (M)
+
+Path B muted at Mixer.
+
+Post Mixer:
+Low-High Cut -> Parametric-8 -> Gain -> Output
+----
+
+
+== Mixer state
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Level A |0.0 dB |The dirty path is active for rhythm.
+|Level B |-60.0 dB |The clean path is muted to prevent clean leakage.
+|Pan A / Pan B |C / C |The preset remains mono.
+|Phase |Off |Normal phase is the default unless a specific phase issue is heard.
+|Mixer Level |0.0 dB |Scene volume is handled after EQ.
+|===
+
+
+== Green 808
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Overdrive |0.00 |The boost is for tightening the amp input, not for adding pedal distortion.
+|Tone |5.8 |Brighter than the 6505 side to keep the smoother OS-V2 57 + 121 mix present in the band.
+|Level |7.8 |A firm push into the EV101 model tightens palm mutes and improves pick response.
+|Bypass |Off |The 808 is part of the rhythm voicing and should stay on.
+|===
+
+
+The overdrive is doing pre-EQ work. It reduces loose low-end before the amp and emphasizes the attack range. For this style, that is usually more useful than adding more amp gain.
+
+== EV101IIIS Red 6L6 100W
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Gain |3.8 |Moderate high gain. Higher settings compress the transient and blur low-string riffs.
+|Bass |2.4 |Enough body for the larger OS-V2 cab, but not enough to fight bass guitar.
+|Mid |5.7 |Keeps the EV101 side present while allowing the 6505 side to be the more forward midrange voice.
+|Treble |5.1 |Adds articulation through the smoother 57 + 121 IR.
+|Presence |4.5 |Adds high-end cut without relying on excessive treble.
+|Resonance / Depth |2.0 |Gives some low-end authority, but stays controlled for a 7-string.
+|Master |3.5 |A moderate value for body and sustain without excessive modeled power-amp bloom.
+|Level |Unity, usually -4.0 dB to -2.0 dB |Use this only for block level control, then final Gain for scene matching.
+|===
+
+
+The low gain and restrained low-end controls are intentional. With a 7-string and Fishman Fluence Modern pickups, brutality comes from tight transient shape and bass-guitar support, not from excessive guitar sub-low content.
+
+== Adaptive Gate (S/C)
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Noise Reduction |82.0% |Tight enough for modern stops while still allowing picked notes to speak.
+|Source / Trigger |In 1 |The gate follows the clean DI transient while reducing the noisy high-gain amp output.
+|Bypass |Off |Noise control is required for dry rhythm.
+|===
+
+
+If harmonics or held notes get cut off, lower Noise Reduction to `76%` to `78%`. If dead stops are loose, raise it to `86%` or enable the optional Simple Gate.
+
+== IR Loader: Single (M)
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|IR |York Audio MES 412 OS-V2 Mix 01, MPT, 48k |This is the selected rhythm cab voice for this guitar side.
+|Mic blend |57 + 121 |The mic choice is part of the two-guitar separation strategy.
+|Level |0.0 dB |Neutral level. Use final Gain to match scenes.
+|Pan |C |Mono routing keeps the preset predictable through FOH.
+|Bypass |Off |The cab IR is required for the rhythm sound.
+|===
+
+
+== Post-mixer Low-High Cut
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Low Cut |82 Hz |Tightens the larger OS-V2 cab while keeping the EV101 side slightly bigger than the 6505 side.
+|High Cut |8.4 kHz |Leaves a little more top than the 6505 side because the 57 + 121 mix is smoother.
+|===
+
+
+A guitar low cut can feel counterintuitive when playing alone, but it is critical in a full band. It removes rumble that the bass and kick handle more effectively.
+
+== Post-mixer Parametric-8
+
+[%autowidth,cols="1,1,1,1,1,3",options="header"]
+|===
+|Band |Type |Frequency |Gain |Q |Purpose
+|1 |Bell |120 Hz |-1.8 dB |1.00 |Controls oversized-cab low-end mass.
+|2 |Bell |240 Hz |-2.8 dB |1.10 |Main low-mid mud cut for this side.
+|3 |Bell |420 Hz |-1.2 dB |1.00 |Keeps powerchords from becoming woolly.
+|4 |Bell |850 Hz |+1.0 dB |0.80 |Adds chord body and growl.
+|5 |Bell |1.45 kHz |+1.5 dB |0.90 |Restores forwardness that can be softened by the 121 component.
+|6 |Bell |2.60 kHz |+1.2 dB |1.00 |Adds pick attack and separation.
+|7 |Bell |3.90 kHz |-1.0 dB |1.80 |Controls harshness while leaving bite.
+|8 |Bell |6.30 kHz |-0.8 dB |1.40 |Smooths active-pickup scratch.
+|===
+
+
+The EQ is mild on purpose. Extreme scooping often sounds impressive alone and weak in a two-guitar band. These moves remove mud, retain midrange identity, and control harshness.
+
+== Final Gain
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Gain |0.0 dB starting point |Use this as the scene volume trim after the tone is correct.
+|Bypass |Off |The final gain block gives one safe place for scene-level changes.
+|===
+
+
+== Optional tight-stop block: Simple Gate
+
+Place this between `Green 808` and `EV101IIIS Red 6L6 100W` only if rhythm stops are not tight enough at rehearsal volume.
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Threshold |55.0 |Raises the muting threshold before the amp. Use only as much as required.
+|Range |100% |Full attenuation gives tight stops.
+|Bypass |Normally On only for staccato rhythm scenes |Bypass for clean and usually bypass or lower for lead.
+|===
+
+
+== Rhythm correction workflow
+
+[%autowidth,cols="2,2,3",options="header"]
+|===
+|Problem |Change |Reason
+|Palm mutes are muddy |Lower amp resonance/depth first, then raise Low Cut by 4 to 6 Hz |Preamp and power-amp low-end controls affect the mud source before post-EQ cleanup.
+|Powerchords smear |Lower amp Gain by 0.3 to 0.7 and cut the 220 to 420 Hz range another -0.5 to -1.0 dB |Too much saturation and low-mid buildup hide chord intervals.
+|Tone is fizzy |Lower High Cut to 7.4 to 7.8 kHz or cut the 3.7 to 3.9 kHz band another -1 dB |This removes harshness without making the whole amp darker.
+|Tone disappears with the band |Add +0.5 to +1.0 dB around 1.2 to 1.6 kHz |That range carries riff identity through bass and drums.
+|Pick attack is too clicky |Lower Green 808 Tone by 0.4 to 0.8 and reduce the 2.3 to 2.6 kHz boost |Click usually comes from boost tone plus upper-mid EQ, not from presence alone.
+|===

@@ -1,0 +1,163 @@
+= Scene A - Rhythm - 6505 Guitar - PV-505 Lead
+:toc: macro
+:toclevels: 3
+:sectanchors:
+:icons: font
+
+NOTE: These are manual build notes for the Quad Cortex. They are not preset export files. Treat values as starting points and level-match at rehearsal volume.
+
+toc::[]
+
+== Target
+
+The 6505 side supplies the more immediate pick attack and snarling upper mids. It should feel tight, dry, and slightly unforgiving. The rhythm scene is intentionally dry: no chorus, no delay, no reverb, no doubler, and no stereo widening.
+
+== Active routing
+
+[source,text]
+----
+Path A active:
+Green 808 -> PV-505 Lead -> Adaptive Gate (S/C) -> IR Loader: Single (M)
+
+Path B muted at Mixer.
+
+Post Mixer:
+Low-High Cut -> Parametric-8 -> Gain -> Output
+----
+
+
+== Mixer state
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Level A |0.0 dB |The dirty path is active for rhythm.
+|Level B |-60.0 dB |The clean path is muted to prevent clean leakage.
+|Pan A / Pan B |C / C |The preset remains mono.
+|Phase |Off |Normal phase is the default unless a specific phase issue is heard.
+|Mixer Level |0.0 dB |Scene volume is handled after EQ.
+|===
+
+
+== Green 808
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Overdrive |0.00 |The pedal is used as a tightening boost, not as a distortion source. Extra pedal distortion would smear low-string riffs.
+|Tone |5.2 |Slightly below the EV101 side to avoid excessive scratch from the 6505 upper mids and active pickups.
+|Level |7.4 |Pushes the amp enough to tighten the front end while avoiding the over-compressed feel of a maxed boost.
+|Bypass |Off |The 808 is part of the rhythm voicing and should stay on for this scene.
+|===
+
+
+The overdrive is doing pre-EQ work. It reduces loose low-end before the amp and emphasizes the attack range. For this style, that is usually more useful than adding more amp gain.
+
+== PV-505 Lead
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Gain |3.2 |Moderate gain keeps fast low-string riffs separated. Fishmans and the 808 already provide strong input level.
+|Bass |2.2 |Keeps preamp low end controlled. Bass above this range can make palm mutes feel big alone but undefined with bass guitar.
+|Mid |5.9 |Keeps the guitar audible in a two-guitar mix. Scooping this amp too hard makes it vanish under cymbals and bass.
+|Treble |4.7 |Enough edge for attack without adding unnecessary 6505 fizz.
+|Master |3.0 |Moderate master keeps the modeled power section dense but not bloated.
+|Resonance |1.7 |Adds low-end thump, but stays low because the 7-string and bass already supply weight.
+|Presence |4.0 |Adds bite above the treble range without turning the tone into harsh fizz.
+|Level |Unity, usually -4.0 dB to -2.0 dB |Use this only to avoid block clipping before the final scene Gain.
+|===
+
+
+The low gain and restrained low-end controls are intentional. With a 7-string and Fishman Fluence Modern pickups, brutality comes from tight transient shape and bass-guitar support, not from excessive guitar sub-low content.
+
+== Adaptive Gate (S/C)
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Noise Reduction |82.0% |Tight enough for modern stops while still allowing picked notes to speak.
+|Source / Trigger |In 1 |The gate follows the clean DI transient while reducing the noisy high-gain amp output.
+|Bypass |Off |Noise control is required for dry rhythm.
+|===
+
+
+If harmonics or held notes get cut off, lower Noise Reduction to `76%` to `78%`. If dead stops are loose, raise it to `86%` or enable the optional Simple Gate.
+
+== IR Loader: Single (M)
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|IR |York Audio MES 412 TRAD Mix 05, MPT, 48k |This is the selected rhythm cab voice for this guitar side.
+|Mic blend |421 + 57 |The mic choice is part of the two-guitar separation strategy.
+|Level |0.0 dB |Neutral level. Use final Gain to match scenes.
+|Pan |C |Mono routing keeps the preset predictable through FOH.
+|Bypass |Off |The cab IR is required for the rhythm sound.
+|===
+
+
+== Post-mixer Low-High Cut
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Low Cut |84 Hz |Tighter than the EV101 side because the TRAD 421 + 57 mix already has strong punch. This leaves sub-low space for bass.
+|High Cut |8.0 kHz |Removes fizz above the useful guitar range while preserving pick attack.
+|===
+
+
+A guitar low cut can feel counterintuitive when playing alone, but it is critical in a full band. It removes rumble that the bass and kick handle more effectively.
+
+== Post-mixer Parametric-8
+
+[%autowidth,cols="1,1,1,1,1,3",options="header"]
+|===
+|Band |Type |Frequency |Gain |Q |Purpose
+|1 |Bell |115 Hz |-1.0 dB |1.00 |Trims excess thump without removing the feel of palm mutes.
+|2 |Bell |220 Hz |-3.2 dB |1.15 |Main mud cut for this guitar. This area builds up quickly with a 6505 and 421-style mic content.
+|3 |Bell |360 Hz |-1.8 dB |1.10 |Reduces boxiness and keeps powerchords from sounding congested.
+|4 |Bell |720 Hz |+0.8 dB |0.90 |Adds growl and chord body without making the guitar nasal.
+|5 |Bell |1.25 kHz |+1.4 dB |0.90 |Helps riffs speak through drums and the second guitar.
+|6 |Bell |2.35 kHz |+1.2 dB |1.00 |Adds pick definition and note edge.
+|7 |Bell |3.75 kHz |-1.2 dB |1.70 |Controls the most abrasive 6505 rasp zone.
+|8 |Bell |6.20 kHz |-1.0 dB |1.30 |Smooths active-pickup scratch that can remain after the high cut.
+|===
+
+
+The EQ is mild on purpose. Extreme scooping often sounds impressive alone and weak in a two-guitar band. These moves remove mud, retain midrange identity, and control harshness.
+
+== Final Gain
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Gain |0.0 dB starting point |Use this as the scene volume trim after the tone is correct.
+|Bypass |Off |The final gain block gives one safe place for scene-level changes.
+|===
+
+
+== Optional tight-stop block: Simple Gate
+
+Place this between `Green 808` and `PV-505 Lead` only if rhythm stops are not tight enough at rehearsal volume.
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Threshold |52.0 |Raises the muting threshold before the amp. Use only as much as required.
+|Range |100% |Full attenuation gives tight stops.
+|Bypass |Normally On only for staccato rhythm scenes |Bypass for clean and usually bypass or lower for lead.
+|===
+
+
+== Rhythm correction workflow
+
+[%autowidth,cols="2,2,3",options="header"]
+|===
+|Problem |Change |Reason
+|Palm mutes are muddy |Lower amp resonance/depth first, then raise Low Cut by 4 to 6 Hz |Preamp and power-amp low-end controls affect the mud source before post-EQ cleanup.
+|Powerchords smear |Lower amp Gain by 0.3 to 0.7 and cut the 220 to 420 Hz range another -0.5 to -1.0 dB |Too much saturation and low-mid buildup hide chord intervals.
+|Tone is fizzy |Lower High Cut to 7.4 to 7.8 kHz or cut the 3.7 to 3.9 kHz band another -1 dB |This removes harshness without making the whole amp darker.
+|Tone disappears with the band |Add +0.5 to +1.0 dB around 1.2 to 1.6 kHz |That range carries riff identity through bass and drums.
+|Pick attack is too clicky |Lower Green 808 Tone by 0.4 to 0.8 and reduce the 2.3 to 2.6 kHz boost |Click usually comes from boost tone plus upper-mid EQ, not from presence alone.
+|===
