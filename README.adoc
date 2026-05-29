@@ -35,8 +35,6 @@ These files are written as GitHub-compatible AsciiDoc. They are intended as prac
 | Split-bass routing, clean-low path, dirty-mid/high path, mixer, post-processing, scenes, and quick adjustments.
 |===
 
-----
-
 == Preset concept
 
 === Guitar 1: 6505 / PV-505 Lead
