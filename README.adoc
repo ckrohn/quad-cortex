@@ -23,47 +23,18 @@ These files are written as GitHub-compatible AsciiDoc. They are intended as prac
 | Contents
 
 | 6505 guitar
-| link:qc_6505_guitar_asciidoc/index.adoc[qc_6505_guitar_asciidoc/index.adoc]
+| link:qc_6505_guitar_asciidoc/README.adoc[qc_6505_guitar_asciidoc/README.adoc]
 | Rhythm, clean, and lead scenes for the PV-505 Lead guitar preset.
 
 | EV101 guitar
-| link:qc_ev101_guitar_asciidoc/index.adoc[qc_ev101_guitar_asciidoc/index.adoc]
+| link:qc_ev101_guitar_asciidoc/README.adoc[qc_ev101_guitar_asciidoc/README.adoc]
 | Rhythm, clean, and lead scenes for the EV101IIIS Red 6L6 100W guitar preset.
 
 | Bass
-| link:qc_bass_asciidoc/index.adoc[qc_bass_asciidoc/index.adoc]
+| link:qc_bass_asciidoc/README.adoc[qc_bass_asciidoc/README.adoc]
 | Split-bass routing, clean-low path, dirty-mid/high path, mixer, post-processing, scenes, and quick adjustments.
 |===
 
-== Expected repository layout
-
-Place this top-level `README.adoc` next to the three instrument folders:
-
-[source,text]
-----
-.
-├── README.adoc
-├── qc_6505_guitar_asciidoc/
-│   ├── README.adoc
-│   ├── index.adoc
-│   ├── rhythm.adoc
-│   ├── clean.adoc
-│   └── lead.adoc
-├── qc_ev101_guitar_asciidoc/
-│   ├── README.adoc
-│   ├── index.adoc
-│   ├── rhythm.adoc
-│   ├── clean.adoc
-│   └── lead.adoc
-└── qc_bass_asciidoc/
-    ├── README.adoc
-    ├── index.adoc
-    ├── main-routing.adoc
-    ├── clean-low-path.adoc
-    ├── dirty-mid-high-path.adoc
-    ├── mixer-post-processing.adoc
-    ├── scenes-and-variants.adoc
-    └── quick-adjustments.adoc
 ----
 
 == Preset concept
@@ -97,7 +68,7 @@ Mix 05
 421 + 57 blend
 ----
 
-Main document: link:qc_6505_guitar_asciidoc/index.adoc[6505 guitar index]
+Main document: link:qc_6505_guitar_asciidoc/README.adoc[6505 guitar index]
 
 === Guitar 2: EV101IIIS Red 6L6 100W
 
@@ -128,7 +99,7 @@ Mix 01
 57 + 121 blend
 ----
 
-Main document: link:qc_ev101_guitar_asciidoc/index.adoc[EV101 guitar index]
+Main document: link:qc_ev101_guitar_asciidoc/README.adoc[EV101 guitar index]
 
 === Bass
 
@@ -174,7 +145,7 @@ York Audio AMPG 410 HS
 48k Mix file
 ----
 
-Main document: link:qc_bass_asciidoc/index.adoc[bass index]
+Main document: link:qc_bass_asciidoc/README.adoc[bass index]
 
 == Scene overview
 
@@ -323,9 +294,3 @@ General target:
 * Use final `Gain` blocks for scene level matching instead of changing amp gain.
 * Use the bass dirty path for audibility, not for sub-low weight.
 * Recheck all gates at rehearsal volume. Bedroom-volume gate settings often fail in a live room.
-
-== Quick navigation
-
-* link:qc_6505_guitar_asciidoc/index.adoc[6505 guitar documentation]
-* link:qc_ev101_guitar_asciidoc/index.adoc[EV101 guitar documentation]
-* link:qc_bass_asciidoc/index.adoc[Bass documentation]
