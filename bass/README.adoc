@@ -1,13 +1,16 @@
 = Quad Cortex Bass Preset - Split Modern Metal Bass
 :toc: macro
-:toclevels: 3
+:toclevels: 4
 :sectanchors:
 :icons: font
 
 Split bass preset designed to complement the 6505 and EV101 guitar tones.
 
+This folder now uses a single-file layout. All bass routing, path settings, scenes, variants, quick-adjustment tables, and final summary are contained in this `README.adoc`.
+
 toc::[]
 
+[[target]]
 == Target
 
 [%autowidth,cols="1,1",options="header"]
@@ -23,19 +26,21 @@ toc::[]
 
 The bass should supply the true weight below the guitars and add grind around 700 Hz to 2.5 kHz so it remains audible through the band.
 
-== File map
+[[document-map]]
+== Document map
 
-[%autowidth,cols="1,1",options="header"]
+[%autowidth,cols="1,2",options="header"]
 |===
-|File |Purpose
-|link:main-routing.adoc[main-routing.adoc] |Input, pre-split compression, crossover, and global routing
-|link:clean-low-path.adoc[clean-low-path.adoc] |Path A clean low foundation
-|link:dirty-mid-high-path.adoc[dirty-mid-high-path.adoc] |Path B distorted mid/high grind and IR choices
-|link:mixer-post-processing.adoc[mixer-post-processing.adoc] |Mixer, phase check, post-mix EQ, final output
-|link:scenes-and-variants.adoc[scenes-and-variants.adoc] |Main, tight, and big scenes plus simplified variants
-|link:quick-adjustments.adoc[quick-adjustments.adoc] |Band-fit correction tables
+|Section |Purpose
+|<<main-routing>> |Input, pre-split compression, crossover, and global routing
+|<<path-a-clean-low-path>> |Path A clean low foundation
+|<<path-b-dirty-mid-high-path>> |Path B distorted mid/high grind and IR choices
+|<<mixer-and-post-processing>> |Mixer, phase check, post-mix EQ, final output
+|<<scenes-and-variants>> |Main, tight, and big scenes plus simplified variants
+|<<quick-adjustments>> |Band-fit correction tables and final summary
 |===
 
+[[frequency-priority]]
 == Frequency priority with the guitars
 
 [%autowidth,cols="1,1",options="header"]
@@ -51,3 +56,742 @@ The bass should supply the true weight below the guitars and add grind around 70
 |===
 
 If the guitars sound smaller when the bass enters, the bass likely has too much 150 to 300 Hz or too much distorted low end below 180 Hz.
+
+[[main-routing]]
+== Main Routing
+
+=== Main split chain
+
+Use a parallel split. Path A is clean low end. Path B is dirty mid/high grind.
+
+[source,text]
+----
+In 1
+-> VCA Comp
+-> Splitter: Crossover
+
+Path A, clean low path:
+Low-High Cut -> VCA Comp -> Parametric-8 -> Gain -> Mixer
+
+Path B, dirty mid/high path:
+Low-High Cut -> Microtubes B3K -> Amped Super Valve -> IR Loader: Single (M)
+-> Adaptive Gate (S/C) -> Low-High Cut -> Parametric-8 -> Gain -> Mixer
+
+Mixer
+-> Parametric-8 -> Gain -> Out 1 / Multi Out
+----
+
+=== In 1
+
+[%autowidth,cols="1,1,1",options="header"]
+|===
+|Parameter |Passive bass |Active bass
+|Input Gain |0.0 dB |-6.0 dB
+|Input Gate |Off |Off
+|===
+
+Use the active-bass setting if the player has a hot preamp, active EMGs, Fishman bass pickups, or anything that clips the input on hard picked notes.
+
+=== Input adjustment rules
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Behavior |Change
+|Input flashes red on hard notes |Lower Input Gain by 3 dB
+|Bass feels weak and never gets near yellow |Raise Input Gain by 3 dB
+|Low notes distort before the drive path |Lower Input Gain, not the amp gain
+|===
+
+=== Pre-split VCA Comp
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Threshold |-20.0 dB
+|Ratio |4.0:1
+|Attack |18 ms
+|Release |90 ms
+|Makeup / Output |+2.0 dB
+|Mix |75%
+|===
+
+Aim for roughly 3 to 6 dB of gain reduction on hard notes.
+
+=== Pre-split compressor fine-tuning
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Problem |Change
+|Pick attack disappears |Raise Attack to 25 ms
+|Low notes jump out too much |Lower Threshold to -24 dB
+|Bass feels over-compressed |Raise Threshold to -16 dB, Mix 65%
+|Bass is still uneven |Ratio 5.0:1, Release 110 ms
+|===
+
+=== Splitter: Crossover
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Type |Crossover
+|Frequency |180 Hz
+|Mode |Normal / not swapped
+|Stereo |Off
+|Mute |Off
+|===
+
+=== Crossover frequency guide
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Tuning / role |Frequency
+|B standard / Drop A |180 Hz
+|Very low tuning, Drop G or lower |150 to 165 Hz
+|Bass is too clean and separated |200 Hz
+|Bass distortion muddies the guitars |190 to 220 Hz
+|===
+
+[[path-a-clean-low-path]]
+== Path A - Clean Low Path
+
+=== Purpose
+
+This path is the clean foundation. It should sound stable, controlled, centered, and relatively plain by itself.
+
+[source,text]
+----
+Path A:
+Low-High Cut -> VCA Comp -> Parametric-8 -> Gain -> Mixer
+----
+
+=== Low-High Cut
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Low Cut |35 Hz
+|High Cut |180 Hz
+|===
+
+=== Tuning-specific low cut
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Bass tuning |Low Cut
+|E standard |40 Hz
+|B standard |35 Hz
+|Drop A |32 Hz
+|Drop G |30 Hz
+|Small PA / bad room |40 to 45 Hz
+|===
+
+=== VCA Comp
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Threshold |-26.0 dB
+|Ratio |5.0:1
+|Attack |30 ms
+|Release |130 ms
+|Makeup / Output |+3.0 dB
+|Mix |85%
+|===
+
+=== Low-path compressor fine-tuning
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Problem |Change
+|Low end pumps |Release 170 ms
+|Low end feels slow |Release 100 ms
+|Attack is too soft |Attack 22 ms
+|Low B or A jumps out |Threshold -30 dB
+|Low end is too flat |Mix 70%
+|===
+
+=== Parametric-8
+
+[%autowidth,cols="1,1,1,1,1",options="header"]
+|===
+|Band |Type |Frequency |Gain |Q
+|1 |Bell |45 Hz |+1.0 dB |0.80
+|2 |Bell |70 Hz |+1.5 dB |0.90
+|3 |Bell |105 Hz |-1.0 dB |1.00
+|4 |Bell |145 Hz |-1.8 dB |1.10
+|5 |Bell |180 Hz |-2.0 dB |1.20
+|6 |Bell |250 Hz |-3.0 dB |1.20
+|7 |Bell |500 Hz |-6.0 dB |0.70
+|8 |Bell |1.00 kHz |-8.0 dB |0.70
+|===
+
+=== Gain
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Gain |0.0 dB
+|===
+
+Leave this at 0.0 dB initially. Use it only if you need to rebalance the clean low path against the dirty path.
+
+[[path-b-dirty-mid-high-path]]
+== Path B - Dirty Mid/High Path
+
+=== Purpose
+
+This path provides bass aggression. It should sound ugly and somewhat thin by itself. In the full preset, it gives note definition through the two guitars.
+
+[source,text]
+----
+Path B:
+Low-High Cut -> Microtubes B3K -> Amped Super Valve -> IR Loader: Single (M)
+-> Adaptive Gate (S/C) -> Low-High Cut -> Parametric-8 -> Gain -> Mixer
+----
+
+=== Pre-drive Low-High Cut
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Low Cut |180 Hz
+|High Cut |7.5 kHz
+|===
+
+=== Pre-drive cut adjustments
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Problem |Change
+|Distortion makes the low end fuzzy |Raise Low Cut to 200 Hz
+|Distorted bass feels disconnected from lows |Lower Low Cut to 160 Hz
+|Too much pick scratch |Lower High Cut to 6.2 kHz
+|Not enough clank |Raise High Cut to 8.5 kHz
+|===
+
+=== Microtubes B3K
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Drive |5.8
+|Growl |On
+|Midboost |On
+|Tone |4.8
+|Level |5.0
+|Blend |7.0
+|===
+
+=== Microtubes B3K fine-tuning
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Problem |Change
+|Too much fizz |Tone 4.0, Drive 5.0
+|Not enough aggression |Drive 6.5, Tone 5.3
+|Bass masks the guitars |Lower Blend to 5.5
+|Bass disappears |Keep Drive the same and raise dirty path level
+|Palm-muted guitar riffs lose tightness |Raise Path B Low Cut to 200 Hz
+|Bass sounds like fuzz instead of grind |Drive 4.8, Blend 8.0
+|===
+
+=== Amped Super Valve
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Gain |4.2
+|Bass |2.0
+|Midrange |6.5
+|Frequency |3.0
+|Treble |4.2
+|Ultra Lo |Off
+|Ultra Hi |Off
+|Master |4.0
+|Output / Level |Unity, usually around -3.0 dB to 0.0 dB
+|===
+
+=== Amp fine-tuning
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Problem |Change
+|Bass grind is too woolly |Bass 1.0, Midrange 7.0
+|Bass lacks authority |Master 4.5, Midrange 6.8
+|Too much scratch |Treble 3.5, B3K Tone 4.2
+|Too dark |Treble 4.8, B3K Tone 5.4
+|Guitars feel smaller when bass enters |Bass 1.5, raise Path B Low Cut to 200 Hz
+|===
+
+=== IR Loader: Single (M)
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|IR |York Audio AMPG 410 HS, 48k Mix file
+|Level |0.0 dB
+|Pan |C
+|===
+
+=== Recommended bass IRs
+
+[%autowidth,cols="1,1,1",options="header"]
+|===
+|Choice |Use when |Notes
+|York Audio AMPG 410 HS |First choice |Based on an Ampeg Heritage SVT-410HLF-style cab; use a Mix file
+|OwnHammer AMPG Bass |York 410 is too big or extended |Start with a 410HLF mix, not a 210-only IR
+|ML Sound Lab AMPG Bass Cab Pack |Studio-style 4x10 option |Use a mix file and avoid subkick-heavy options on the dirty path
+|Shift Line Bass HD IR Pack |Classic 8x10 punch |Use if you want less modern 410HLF low extension
+|810 Amped VT 90s |Stock QC fallback |Use if no third-party IR is available
+|===
+
+=== Adaptive Gate (S/C)
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Noise Reduction |42.0%
+|Source / Trigger |In 1
+|===
+
+Use this only to clean up hiss from the distorted path. Do not clamp the bass like a rhythm guitar.
+
+=== Gate fine-tuning
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Problem |Change
+|Hiss between stops |Noise Reduction 50%
+|Sustained bass notes die |Noise Reduction 30% to 35%
+|Bass feels disconnected |Turn the gate off
+|Dead stops are too loose |Check muting technique first, then try 55%
+|===
+
+=== Post-distortion Low-High Cut
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Low Cut |180 Hz
+|High Cut |6.8 kHz
+|===
+
+=== Post-distortion Parametric-8
+
+[%autowidth,cols="1,1,1,1,1",options="header"]
+|===
+|Band |Type |Frequency |Gain |Q
+|1 |Bell |220 Hz |-2.5 dB |1.10
+|2 |Bell |350 Hz |-2.0 dB |1.00
+|3 |Bell |520 Hz |-1.5 dB |1.10
+|4 |Bell |750 Hz |+1.5 dB |0.90
+|5 |Bell |1.15 kHz |+2.0 dB |0.90
+|6 |Bell |1.85 kHz |+1.8 dB |1.00
+|7 |Bell |2.90 kHz |+0.8 dB |1.10
+|8 |Bell |4.20 kHz |-1.8 dB |1.60
+|===
+
+=== Path B Gain
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Gain |-3.0 dB
+|===
+
+Start with the dirty path slightly lower than the clean path. It should be clearly audible, but it should not sound like a separate distorted guitar.
+
+[[mixer-and-post-processing]]
+== Mixer and Post Processing
+
+=== Mixer settings
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Level A |0.0 dB
+|Pan A |C
+|Level B |-3.5 dB
+|Pan B |C
+|Phase |Off
+|Mixer Level |-3.0 dB
+|Mute |Off
+|===
+
+=== Phase check
+
+Play hard low-string palm mutes with the full band at rehearsal volume.
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Result |Setting
+|Low end gets bigger and tighter with Phase Off |Keep Phase Off
+|Low end gets smaller when paths are blended |Turn Phase On
+|Difference is minor |Use the setting with more punch around 70 to 120 Hz
+|===
+
+=== Final post-mixer Parametric-8
+
+[%autowidth,cols="1,1,1,1,1",options="header"]
+|===
+|Band |Type |Frequency |Gain |Q
+|1 |Bell |55 Hz |+0.8 dB |0.80
+|2 |Bell |85 Hz |+1.2 dB |0.90
+|3 |Bell |130 Hz |-1.0 dB |1.00
+|4 |Bell |240 Hz |-2.5 dB |1.10
+|5 |Bell |500 Hz |-1.5 dB |1.00
+|6 |Bell |900 Hz |+1.0 dB |0.90
+|7 |Bell |1.60 kHz |+1.2 dB |0.90
+|8 |Bell |3.80 kHz |-1.0 dB |1.50
+|===
+
+=== What the post-mix EQ does
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Area |Function
+|55 to 85 Hz |Main low-end mass
+|130 Hz |Prevents low-end bloom
+|240 Hz |Main mud control
+|500 Hz |Removes boxiness
+|900 Hz |Bass growl
+|1.60 kHz |Note definition through guitars
+|3.80 kHz |Controls scratch
+|===
+
+=== Final Gain
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Gain |Preset volume trim, usually -4.0 dB to 0.0 dB
+|===
+
+Use this final Gain block for preset volume matching. Do not use compressor output, amp output, or dirty path level as the master volume.
+
+[[scenes-and-variants]]
+== Scenes and Variants
+
+=== Scene A: Main rhythm
+
+Use this for most riffs.
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Section |Setting
+|Crossover |180 Hz
+|Path A Level |0.0 dB
+|Path B Level |-3.5 dB
+|B3K Drive |5.8
+|B3K Blend |7.0
+|Adaptive Gate |42%
+|Final 85 Hz band |+1.2 dB
+|===
+
+=== Scene B: Tight staccato / breakdown
+
+Use this for dead stops, fast chugs, and very tight guitar sections.
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Section |Setting
+|Crossover |200 Hz
+|Path A Level |0.0 dB
+|Path B Level |-4.5 dB
+|B3K Drive |5.2
+|B3K Tone |4.5
+|Adaptive Gate |50%
+|Final 240 Hz band |-3.5 dB
+|===
+
+This scene should make the band feel tighter, not bigger.
+
+=== Scene C: Bigger chorus / open parts
+
+Use this when the guitars are playing more open powerchords and the bass can occupy more space.
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Section |Setting
+|Crossover |160 Hz
+|Path A Level |+1.0 dB
+|Path B Level |-3.0 dB
+|B3K Drive |5.5
+|B3K Blend |6.5
+|Adaptive Gate |35%
+|Final 85 Hz band |+1.8 dB
+|===
+
+Do not use Scene C for the fastest riffs.
+
+=== Optional simpler stock-only version
+
+Use this if the bassist does not want a parallel split.
+
+[source,text]
+----
+In 1
+-> VCA Comp
+-> Microtubes B3K
+-> Amped Super Valve
+-> 810 Amped VT 90s
+-> Low-High Cut
+-> Parametric-8
+-> Gain
+-> Out
+----
+
+==== VCA Comp
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Threshold |-22.0 dB
+|Ratio |4.0:1
+|Attack |20 ms
+|Release |100 ms
+|Makeup / Output |+2.0 dB
+|Mix |75%
+|===
+
+==== Microtubes B3K
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Drive |4.5
+|Growl |On
+|Midboost |On
+|Tone |4.8
+|Level |5.0
+|Blend |4.5
+|===
+
+Use less Blend here because the full-range bass is going through the overdrive.
+
+==== Amped Super Valve
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Gain |4.0
+|Bass |3.5
+|Midrange |6.0
+|Frequency |3.0
+|Treble |4.0
+|Ultra Lo |Off
+|Ultra Hi |Off
+|Master |4.2
+|Output / Level |Unity
+|===
+
+==== Bass Cabinet
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Cab |810 Amped VT 90s
+|Level |0.0 dB
+|Pan |C
+|Phase |Normal
+|===
+
+==== Low-High Cut
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Low Cut |35 Hz
+|High Cut |6.5 kHz
+|===
+
+==== Parametric-8
+
+[%autowidth,cols="1,1,1,1,1",options="header"]
+|===
+|Band |Type |Frequency |Gain |Q
+|1 |Bell |65 Hz |+1.0 dB |0.90
+|2 |Bell |110 Hz |-0.8 dB |1.00
+|3 |Bell |230 Hz |-3.0 dB |1.10
+|4 |Bell |420 Hz |-1.5 dB |1.00
+|5 |Bell |800 Hz |+1.2 dB |0.90
+|6 |Bell |1.40 kHz |+1.5 dB |0.90
+|7 |Bell |2.60 kHz |+0.8 dB |1.10
+|8 |Bell |4.10 kHz |-1.5 dB |1.50
+|===
+
+=== Optional Parallax X version
+
+Use this only if the bass player owns a Parallax X license on Quad Cortex.
+
+[source,text]
+----
+In 1
+-> VCA Comp
+-> Parallax
+-> Parametric-8
+-> Gain
+-> Out
+----
+
+Set Parallax by ear with strong low-band compression, main growl from the mid band, moderate high-band clank, cab on for mid/high bands, and low end kept independently tunable.
+
+==== Post-Parallax Parametric-8
+
+[%autowidth,cols="1,1,1,1,1",options="header"]
+|===
+|Band |Type |Frequency |Gain |Q
+|1 |Bell |65 Hz |+1.0 dB |0.90
+|2 |Bell |120 Hz |-1.0 dB |1.00
+|3 |Bell |240 Hz |-2.5 dB |1.10
+|4 |Bell |500 Hz |-1.5 dB |1.00
+|5 |Bell |850 Hz |+1.0 dB |0.90
+|6 |Bell |1.50 kHz |+1.5 dB |0.90
+|7 |Bell |2.80 kHz |+0.8 dB |1.00
+|8 |Bell |4.20 kHz |-1.5 dB |1.50
+|===
+
+The stock split preset is still the first recommendation because it does not require a plugin license and gives more visible control on the QC grid.
+
+[[quick-adjustments]]
+== Quick Adjustments
+
+=== Main correction table
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Problem |Fix
+|Bass makes palm-muted guitars muddy |Raise Path B Low Cut to 200 Hz and cut final 240 Hz another -1 dB
+|Bass has weight but no note definition |Raise Path B 1.15 kHz and 1.85 kHz by +1 dB
+|Bass sounds like a third guitar |Lower Path B Level to -5 dB and lower B3K Blend to 5.5
+|Bass disappears under guitars |Raise Path B Level to -2.5 dB and boost 900 Hz and 1.6 kHz
+|Low B / A is too boomy |Lower Path A 70 Hz boost and cut 105 Hz another -1 dB
+|Low end is weak |Raise Path A Level +1 dB and boost 70 to 85 Hz
+|Bass is too clicky |Lower B3K Tone to 4.0 and cut 2.9 kHz
+|Bass is too dark |Raise B3K Tone to 5.5 and raise Path B Level
+|Stops are noisy |Raise Adaptive Gate to 50%
+|Sustains get cut off |Lower Adaptive Gate to 30% or bypass it
+|Bass and guitars fight in low mids |Cut final 240 Hz and Path B 220 Hz
+|===
+
+=== Final main settings summary
+
+[source,text]
+----
+In 1:
+Input Gain 0.0 dB passive / -6.0 dB active
+Input Gate Off
+
+VCA Comp, pre-split:
+Threshold -20.0 dB
+Ratio 4.0:1
+Attack 18 ms
+Release 90 ms
+Makeup / Output +2.0 dB
+Mix 75%
+
+Splitter:
+Type Crossover
+Frequency 180 Hz
+Mode Normal / not swapped
+Stereo Off
+
+PATH A, CLEAN LOW
+
+Low-High Cut:
+Low Cut 35 Hz
+High Cut 180 Hz
+
+VCA Comp:
+Threshold -26.0 dB
+Ratio 5.0:1
+Attack 30 ms
+Release 130 ms
+Makeup / Output +3.0 dB
+Mix 85%
+
+Parametric-8:
+45 Hz, +1.0 dB, Q 0.80
+70 Hz, +1.5 dB, Q 0.90
+105 Hz, -1.0 dB, Q 1.00
+145 Hz, -1.8 dB, Q 1.10
+180 Hz, -2.0 dB, Q 1.20
+250 Hz, -3.0 dB, Q 1.20
+500 Hz, -6.0 dB, Q 0.70
+1.00 kHz, -8.0 dB, Q 0.70
+
+Gain:
+0.0 dB
+
+PATH B, DIRTY MID/HIGH
+
+Low-High Cut:
+Low Cut 180 Hz
+High Cut 7.5 kHz
+
+Microtubes B3K:
+Drive 5.8
+Growl On
+Midboost On
+Tone 4.8
+Level 5.0
+Blend 7.0
+
+Amped Super Valve:
+Gain 4.2
+Bass 2.0
+Midrange 6.5
+Frequency 3.0
+Treble 4.2
+Ultra Lo Off
+Ultra Hi Off
+Master 4.0
+Output / Level unity
+
+IR Loader Single (M):
+York Audio AMPG 410 HS Mix
+Level 0.0 dB
+Pan C
+
+Adaptive Gate (S/C):
+Noise Reduction 42.0%
+Source / Trigger In 1
+
+Low-High Cut:
+Low Cut 180 Hz
+High Cut 6.8 kHz
+
+Parametric-8:
+220 Hz, -2.5 dB, Q 1.10
+350 Hz, -2.0 dB, Q 1.00
+520 Hz, -1.5 dB, Q 1.10
+750 Hz, +1.5 dB, Q 0.90
+1.15 kHz, +2.0 dB, Q 0.90
+1.85 kHz, +1.8 dB, Q 1.00
+2.90 kHz, +0.8 dB, Q 1.10
+4.20 kHz, -1.8 dB, Q 1.60
+
+Gain:
+-3.0 dB
+
+MIXER:
+Level A 0.0 dB
+Pan A C
+Level B -3.5 dB
+Pan B C
+Phase Off
+Mixer Level -3.0 dB
+
+POST-MIX PARAMETRIC-8:
+55 Hz, +0.8 dB, Q 0.80
+85 Hz, +1.2 dB, Q 0.90
+130 Hz, -1.0 dB, Q 1.00
+240 Hz, -2.5 dB, Q 1.10
+500 Hz, -1.5 dB, Q 1.00
+900 Hz, +1.0 dB, Q 0.90
+1.60 kHz, +1.2 dB, Q 0.90
+3.80 kHz, -1.0 dB, Q 1.50
+
+Final Gain:
+Preset volume trim, usually -4.0 dB to 0.0 dB
+----
