@@ -10,8 +10,6 @@ toc::[]
 
 This repository documents a complete Neural DSP Quad Cortex setup for a modern metalcore/deathcore band with two 7-string guitars and bass. The target is a dry, tight, aggressive band sound where palm mutes hit hard, powerchords stay defined, and the bass supplies the true low-end mass without making the guitars muddy.
 
-The files are written in GitHub-compatible AsciiDoc. They are intended as practical build sheets for manually creating the presets on the Quad Cortex or in Cortex Control. They are not `.qcp` preset-export files.
-
 == Instrument documents
 
 [%autowidth,cols="1,2,3",options="header"]
@@ -21,27 +19,6 @@ The files are written in GitHub-compatible AsciiDoc. They are intended as practi
 |EV101 guitar |link:guitar_ev101/README.adoc[guitar_ev101/README.adoc] |The smoother and wider guitar side. Uses EV101IIIS Red 6L6 100W with York Audio MES 412 OS-V2 Mix 01.
 |Bass |link:bass/README.adoc[bass/README.adoc] |Split modern metal bass: clean compressed lows plus distorted mid/high grind.
 |===
-
-
-== Repository layout
-
-[source,text]
-----
-.
-|-- README.adoc
-|-- guitar_6505/
-|   |-- README.adoc
-|   |-- rhythm.adoc
-|   |-- clean.adoc
-|   `-- lead.adoc
-|-- guitar_ev101/
-|   |-- README.adoc
-|   |-- rhythm.adoc
-|   |-- clean.adoc
-|   `-- lead.adoc
-`-- bass/
-    `-- README.adoc
-----
 
 Each instrument folder uses `README.adoc` as its index. The guitar folders keep one separate file per scene. The bass is intentionally a single large README because the split low/high routing is easier to understand when viewed as one continuous signal chain.
 

@@ -61,10 +61,11 @@ The clean compressor controls active-pickup peaks and makes arpeggiated parts mo
 [%autowidth,cols="1,1,3",options="header"]
 |===
 |Parameter |Setting |Why this value is used
-|Volume |3.0 |Clean but a little more pushed than the Rols Jazz clean. Lower it if the Fishmans make it gritty.
-|Bass |3.6 |Warm body without allowing clean low strings to bloom.
-|Middle |5.6 |More midrange than a scooped clean so it stays audible live.
-|Treble |5.0 |Controlled top end. This side is intentionally warmer than the 6505 clean.
+|Volume |3.4 |Slightly higher because Input Low gives more clean headroom and less pickup bark.
+|Treble |5.0 |Keeps definition without making the EV101 clean too bright.
+|Bass |3.4 |Gives warmth without clean low-string bloom.
+|Input |Low |Better for hot Fishman Fluence Modern pickups when you want actual clean headroom.
+|Mode |Vibrato |Good clean-channel base for this preset.
 |Level |0.0 dB |Initial block level. Final scene volume is set later.
 |Bypass |Off |This is the active clean amp when Path B is selected.
 |===
@@ -137,6 +138,8 @@ The two guitarists use different chorus depths and mixes. This keeps the clean s
 
 == Digital Delay (M)
 
+=== Page 1
+
 [%autowidth,cols="1,1,3",options="header"]
 |===
 |Parameter |Setting |Why this value is used
@@ -153,6 +156,20 @@ The two guitarists use different chorus depths and mixes. This keeps the clean s
 |Bypass |Off |Delay is active for the clean scene.
 |===
 
+=== Page 2
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Dyn Depth |0.0 dB
+|Dyn Mode |Off
+|Threshold |-24.0 dB
+|Attack |200 ms
+|Release |500 ms
+|Knee |4.0 dB
+|Feedback Depth |80%
+|Gain Reduction |Meter only
+|===
 
 The delay is filtered and relatively quiet. Low-passing the repeats keeps them behind the dry guitar, and high-passing the repeats prevents low-end buildup.
 

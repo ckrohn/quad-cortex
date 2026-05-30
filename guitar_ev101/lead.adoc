@@ -17,7 +17,7 @@ The EV101 lead scene is the smoother lead voice. It gets mid focus and delay, bu
 [source,text]
 ----
 Path A active:
-Green 808 -> EV101IIIS Red 6L6 100W -> Adaptive Gate (S/C) -> IR Loader: Single (M)
+Green 808 -> Utility Gate -> EV101IIIS Red 6L6 100W -> IR Loader: Single (M)
 
 Path B muted at Mixer.
 
@@ -55,6 +55,23 @@ Chief CE2W (M) is bypassed by default in the lead scene.
 
 The lead boost settings are close to rhythm but slightly altered for sustain and smoothness. The overdrive value remains very low because too much pedal drive makes fast leads smaller and more compressed.
 
+== Utility Gate
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Threshold |-60.0 dB |Lower than the rhythm setting so bends, vibrato, legato, and pinch harmonics stay above the gate threshold longer.
+|Attack |1 ms |Keeps the lead attack immediate and avoids the fade-in behavior that was noticeable with the Adaptive Gate.
+|Hold |30 ms |Longer than rhythm to keep the gate from closing during slower phrasing and vibrato.
+|Release |90 ms |Longer than rhythm so sustained notes decay more naturally and do not feel abruptly clamped.
+|Range |-55.0 dB |Less severe than the rhythm setting. The gate still reduces noise strongly, but its closing action is less obvious on held notes.
+|Bypass |Off |Use these looser settings for lead. If the part is very exposed and noise is manageable, bypassing the gate is also valid.
+|===
+
+Keep this block between `Green 808` and the amp. The lead scene should not use a post-amp hard gate, because the distorted amp signal is heavily compressed and makes a threshold gate less predictable. The lower threshold and longer release are the main changes that protect harmonics and sustain.
+
+If lead sustain still gets cut off, lower Threshold to `-63.0 dB` or bypass the gate for that scene. If the lead scene is too noisy between phrases, raise Threshold to `-57.0 dB` but keep Release above `70 ms`.
+
 == EV101IIIS Red 6L6 100W
 
 [%autowidth,cols="1,1,3",options="header"]
@@ -72,19 +89,6 @@ The lead boost settings are close to rhythm but slightly altered for sustain and
 
 
 The lead scene gets more mids and slightly more gain, but less low-end resonance than rhythm. This places the lead above the band without adding low-frequency clutter.
-
-== Adaptive Gate (S/C)
-
-[%autowidth,cols="1,1,3",options="header"]
-|===
-|Parameter |Setting |Why this value is used
-|Noise Reduction |76.0% |Lower than rhythm so bends, vibrato, legato, and harmonics sustain naturally.
-|Source / Trigger |In 1 |The gate follows the clean DI transient.
-|Bypass |Off |Still needed for high-gain noise, but less aggressive than rhythm.
-|===
-
-
-If sustain is still being cut off, lower Noise Reduction to `70%` to `72%`. Do this before adding more amp gain.
 
 == IR Loader: Single (M)
 
@@ -146,6 +150,8 @@ Lead EQ emphasizes the vocal midrange and reduces low-mid congestion. The purpos
 
 == Digital Delay (M)
 
+=== Page 1
+
 [%autowidth,cols="1,1,3",options="header"]
 |===
 |Parameter |Setting |Why this value is used
@@ -162,6 +168,20 @@ Lead EQ emphasizes the vocal midrange and reduces low-mid congestion. The purpos
 |Bypass |Off |Delay is active for lead.
 |===
 
+=== Page 2
+
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Dyn Depth |0.0 dB
+|Dyn Mode |Off
+|Threshold |-24.0 dB
+|Attack |200 ms
+|Release |500 ms
+|Knee |4.0 dB
+|Feedback Depth |80%
+|Gain Reduction |Meter only
+|===
 
 Lead delay adds sustain and dimension. The repeats are high-passed and low-passed so they remain behind the dry lead and do not add fizz or low-mid mud.
 
@@ -200,9 +220,11 @@ Lead reverb is intentionally much lower than clean reverb. In this style, delay 
 [%autowidth,cols="2,2,3",options="header"]
 |===
 |Problem |Change |Reason
-|Lead sustain gets chopped |Lower Adaptive Gate to 70 to 72% |The gate is more likely than the amp to kill sustain.
+|Lead sustain gets chopped |Lower Utility Gate Threshold to -63.0 dB, increase Release to 110 ms, or bypass the gate for that scene |Lead sustain usually fails because the gate is closing before the amp gain actually runs out.
 |Lead is buried |Raise final Gain by +0.5 to +1.0 dB or add +1 dB in the primary lead-mid band |Volume and mids solve audibility better than extra gain.
 |Lead is fizzy |Lower High Cut to 7.4 to 7.6 kHz or cut the 3.7 to 3.9 kHz band another -1 dB |This controls harshness while preserving note focus.
 |Delay clouds fast runs |Lower Delay Mix to 8 to 10% and Feedback to 20 to 24% |Fewer repeats create more clarity.
 |Lead feels too small |Raise mids before raising bass or resonance |Mids increase perceived size without fighting bass guitar.
+|Lead noise between phrases is too high |Raise Utility Gate Threshold to -57.0 dB, but keep Release above 70 ms |This tightens silence without returning to rhythm-style hard clamping.
+|Pick attack fades in |Keep Attack at 1 ms and avoid post-amp gating |The front edge of the note needs the fastest gate opening and a gate position before the amp.
 |===

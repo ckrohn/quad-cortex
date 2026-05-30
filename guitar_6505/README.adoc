@@ -33,7 +33,7 @@ In 1
 -> Splitter: A/B
 
 Path A, dirty rhythm/lead:
-Green 808 -> PV-505 Lead -> Adaptive Gate (S/C) -> IR Loader: Single (M)
+Green 808 -> Utility Gate -> PV-505 Lead -> IR Loader: Single (M)
 
 Path B, clean:
 VCA Comp -> Rols Jazz CH120 -> 212 Rols Jazz '87
@@ -58,6 +58,27 @@ Mixer
 |Input Gate |Off |Use the dedicated gate later in the chain. The input gate is too global for a preset that has clean, rhythm, and lead scenes.
 |===
 
+
+== Gate architecture
+
+The dirty path uses `Utility Gate`. The gate sits between the boost and the amp:
+
+[source,text]
+----
+Green 808 -> Utility Gate -> high-gain amp
+----
+
+This position is intentional. The 808 shapes and stabilizes the signal before the gate, and the amp receives a cleanly muted input. A gate before the 808 can leave noise that the 808 level control then amplifies. A non-sidechained gate after a high-gain amp has to read a heavily compressed distorted signal, which can cause fade-in, unnatural chopping, or lost harmonics.
+
+[%autowidth,cols="1,1,1,3",options="header"]
+|===
+|Scene |Threshold |Release |Reason
+|Rhythm |-53.0 dB |38 ms |Hard, fast stop behavior for palm-muted rhythm.
+|Lead |-60.0 dB |90 ms |Lower threshold and longer release for bends, vibrato, and harmonics.
+|Clean |Not used |Not used |The dirty path is muted. The clean path should remain ungated unless the instrument is unusually noisy.
+|===
+
+Use threshold as the first correction control. Raise it for tighter stops. Lower it if harmonics, slides, or held notes disappear.
 
 == Splitter settings
 
@@ -97,7 +118,7 @@ If the Quad Cortex does not show exactly `-60.0 dB`, set the inactive path as lo
 |Path B clean |Muted |Active |Muted |Clean has its own amp/cab and effects balance.
 |Green 808 |On |Path muted |On |The boost is part of the dirty path only.
 |PV-505 Lead |On |Path muted |On |Same amp identity for rhythm and lead.
-|Adaptive Gate (S/C) |On |Path muted |On, lower reduction |Tighter gate for rhythm, more sustain for lead.
+|Utility Gate |On, rhythm settings |Path muted |On, lead settings |Placed between the 808 and amp. Rhythm uses hard stop settings; lead uses a lower threshold and longer release for sustain.
 |York Audio MES 412 TRAD Mix 05, MPT, 48k |On |Path muted |On |The lead keeps the same cab identity as rhythm.
 |Clean compressor |Path muted |On |Path muted |Clean needs dynamic control before the clean amp.
 |Rols Jazz CH120 |Path muted |On |Path muted |Dedicated clean amp avoids compromised high-gain cleanup.

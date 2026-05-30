@@ -137,6 +137,7 @@ The two guitarists use different chorus depths and mixes. This keeps the clean s
 
 == Digital Delay (M)
 
+=== Page 1
 [%autowidth,cols="1,1,3",options="header"]
 |===
 |Parameter |Setting |Why this value is used
@@ -151,6 +152,20 @@ The two guitarists use different chorus depths and mixes. This keeps the clean s
 |Mod Depth |16% |Subtle modulation keeps repeats from sounding sterile without replacing the chorus.
 |Trails |On |Lets delay decay naturally when changing scenes.
 |Bypass |Off |Delay is part of the clean scene.
+|===
+
+=== Page 2
+[%autowidth,cols="1,1",options="header"]
+|===
+|Parameter |Setting
+|Dyn Depth |0.0 dB
+|Dyn Mode |Off
+|Threshold |-24.0 dB
+|Attack |200 ms
+|Release |500 ms
+|Knee |4.0 dB
+|Feedback Depth |80%
+|Gain Reduction |Meter only
 |===
 
 
