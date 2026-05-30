@@ -40,9 +40,9 @@ Low-High Cut
 Path B, dirty mid/high path:
 Low-High Cut
 -> Microtubes B3K
+-> Utility Gate (optional, default bypassed)
 -> Amped Super Valve
 -> IR Loader: Single (M)
--> Adaptive Gate (S/C)
 -> Low-High Cut
 -> Parametric-8
 -> Gain
@@ -211,7 +211,9 @@ The amp block makes the pedal distortion feel more like a miked bass rig. It is 
 [%autowidth,cols="1,1,3",options="header"]
 |===
 |Parameter |Setting |Why this value is used
-|IR |York Audio AMPG 410 HS, 48k Mix file |Focused 4x10 bass cab character for punch and mid clarity.
+|IR |York Audio AMPG 410 HS, *Mix 05* |Use the SM7 + M88 mix as the default dirty-path bass cabinet voice. It gives punch, growl, and controlled top end without adding tweeter scratch.
+|Folder / format |MPT / 48k |Use the 48 kHz minimum-phase file for predictable alignment and easy loading in the Quad Cortex IR Loader.
+|Mics in the mix |Vintage Shure SM7 + Beyerdynamic M88 TG |The SM7 gives smooth driven mids and restrained top end. The M88 adds punch, focus, and bass-cab authority.
 |Level |0.0 dB |Neutral IR level.
 |Pan |C |Mono bass keeps low end stable.
 |Bypass |Off |The dirty path needs a cab/IR voice so it does not sound like raw DI distortion.
@@ -220,18 +222,86 @@ The amp block makes the pedal distortion feel more like a miked bass rig. It is 
 
 Use the IR only on the dirty path. The clean low path stays direct so the low end remains extended and stable.
 
-=== Adaptive Gate (S/C)
+==== Exact York Audio AMPG 410 HS mix choice
+
+Use this file as the default starting point:
+
+[source,text]
+----
+York Audio AMPG 410 HS
+Folder: MPT / 48k
+Mix: Mix 05
+Mics: SM7 + M88
+File: the WAV file containing `Mix 05` in the MPT / 48k folder
+----
+
+Choose *Mix 05* because this preset already creates the low foundation with the clean DI-style low path. The IR should therefore make the distorted path sound like a real miked bass cabinet without adding excessive sub-low weight. The SM7 side keeps the B3K and amp drive from becoming scratchy. The M88 side adds the focused punch that makes picked or aggressively played notes stay attached to the clean low end.
+
+Do not start with a port/tweeter-heavy mix for this preset. The dirty path already has enough clank from the B3K, the amp, and the post-drive EQ. A brighter mix can work for isolated bass, but in this band context it is more likely to fight cymbals, guitar pick attack, and vocal intelligibility.
+
+Useful alternatives:
+
+[%autowidth,cols="1,3,3",options="header"]
+|===
+|Mix |Use when |Expected change
+|Mix 05, SM7 + M88 |Default |Best balance of punch, grind, and controlled top for the split modern metal preset.
+|Mix 11, 57 + 160 |The bass still lacks upper-mid cut |More bite and string definition. Use carefully because it can make the dirty path feel more guitar-like.
+|Mix 01, M88 + F47 |The dirty path feels too narrow or too thin |Bigger and smoother. May need a slightly higher Path B Low Cut if it adds too much low-mid body.
+|Mix 08, 906 + 313 |The bassist wants more clank and edge |Brighter and more aggressive. Lower B3K Tone or the Path B High Cut if it gets scratchy.
+|===
+
+=== Optional Path B Utility Gate
+
+Default recommendation: do *not* use Adaptive Gate (S/C) on this bass preset. Leave the clean low path ungated, and only gate the dirty mid/high path if the B3K and amp chain create enough hiss to be a problem in stops.
+
+Place the gate here:
+
+[source,text]
+----
+Microtubes B3K
+-> Utility Gate
+-> Amped Super Valve
+----
+
+This position is deliberate. The B3K creates a stronger and more consistent signal for the gate to read, and the Utility Gate then prevents B3K hiss and string handling noise from being pushed into the amp model. Placing the gate before the B3K usually leaves more pedal hiss behind. Placing a hard gate after the amp or IR can make the dirty bass attack and harmonic layer feel disconnected from the clean low path.
+
+==== Default state
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Scene |Utility Gate state |Reason
+|Main rhythm |Bypassed by default |Bass sustain and note length matter more than absolute silence. The clean low path remains natural.
+|Tight staccato / breakdown |On |Use only when dead stops need extra cleanup.
+|Bigger chorus / open parts |Bypassed |Open bass notes should sustain naturally.
+|===
+
+==== Utility Gate settings for tight staccato / breakdown
 
 [%autowidth,cols="1,1,3",options="header"]
 |===
 |Parameter |Setting |Why this value is used
-|Noise Reduction |42.0% |Light cleanup for drive hiss. Bass should not be clamped like a rhythm guitar.
-|Source / Trigger |In 1 |The gate responds to the clean DI transient while reducing dirty path noise.
-|Bypass |Off unless it hurts sustain |Use as a cleanup tool, not as a hard muting effect.
+|Threshold |-57.0 dB |High enough to clean up dirty-path hiss and scrape noise, but not as aggressive as a guitar rhythm gate.
+|Attack |1 ms |Keeps the start of the bass note immediate. Slower attack can feel like a fade-in.
+|Hold |25 ms |Prevents chatter between fast picked notes.
+|Release |75 ms |Fast enough for tight stops, slow enough to avoid obvious chopping.
+|Range |-45.0 dB |Reduces the dirty path substantially without making the bass vanish. The clean low path is still present.
 |===
 
+==== Gentler Utility Gate settings if the dirty path is noisy in main rhythm
 
-If sustained notes die, lower Noise Reduction to `30%` to `35%` or bypass the gate. If hiss is a problem between stops, raise to `50%`.
+Use this only if the main rhythm scene has audible hiss between phrases:
+
+[%autowidth,cols="1,1,3",options="header"]
+|===
+|Parameter |Setting |Why this value is used
+|Threshold |-62.0 dB |Lower threshold so normal sustain, harmonics, and lighter notes remain intact.
+|Attack |1 ms |Keeps attack immediate.
+|Hold |35 ms |Stabilizes the gate on sustained notes.
+|Release |110 ms |More natural decay than the tight-staccato setting.
+|Range |-35.0 dB |A partial reduction rather than a hard mute. This is usually enough for bass dirty-path cleanup.
+|===
+
+If harmonics or note definition disappear, bypass this gate before changing EQ. If the bass player has good muting and the dirty path is not noisy, the best setting is simply bypassed.
 
 === Path B post-drive Low-High Cut
 
@@ -323,7 +393,7 @@ Play hard low-string notes with both paths on. If the low end becomes smaller wh
 |Path B Level |-3.5 dB |Grind is audible but not guitar-like.
 |B3K Drive |5.8 |Main grind setting.
 |B3K Blend |7.0 |Dirty path can be blended high because lows are clean.
-|Adaptive Gate |42% |Light hiss control.
+|Utility Gate |Bypassed by default |Keeps normal bass sustain intact. Enable the gentle Utility Gate only if the dirty path is noisy between phrases.
 |Final 85 Hz band |+1.2 dB |Main low-end punch.
 |===
 
@@ -338,7 +408,7 @@ Play hard low-string notes with both paths on. If the low end becomes smaller wh
 |Path B Level |-4.5 dB |Slightly less grind so stops feel tighter.
 |B3K Drive |5.2 |Less saturation for cleaner dead stops.
 |B3K Tone |4.5 |Darker to reduce scratch in tight sections.
-|Adaptive Gate |50% |More cleanup between stops.
+|Utility Gate |On, tight-staccato settings |Extra dirty-path cleanup for hard stops without gating the clean low path.
 |Final 240 Hz band |-3.5 dB |Extra mud reduction for dense breakdowns.
 |===
 
@@ -353,7 +423,7 @@ Play hard low-string notes with both paths on. If the low end becomes smaller wh
 |Path B Level |-3.0 dB |Slightly more audible grind.
 |B3K Drive |5.5 |Still controlled, not fuzzed out.
 |B3K Blend |6.5 |A little less blend so the bigger low path stays clean.
-|Adaptive Gate |35% |Less gating for sustained notes.
+|Utility Gate |Bypassed |Open sections need natural sustain.
 |Final 85 Hz band |+1.8 dB |More low-end weight for open sections.
 |===
 
@@ -414,5 +484,6 @@ In 1
 |Low B or A is boomy |Reduce Path A 70 Hz boost and cut 105 Hz another -1 dB |Boom is usually low punch becoming low bloom.
 |Low end is weak |Raise Path A Level +1 dB or add +0.5 to +1 dB around 70 to 85 Hz |Fix foundation on the clean-low path before adding dirty path.
 |Bass is too clicky |Lower B3K Tone to 4.0 and reduce 2.9 kHz |Click comes from upper clank and drive tone.
-|Sustains get cut off |Lower Adaptive Gate to 30 to 35% or bypass it |Bass sustain is more important than guitar-style hard gating.
+|Dirty path is noisy during stops |Enable Utility Gate between B3K and Amped Super Valve using the tight-staccato settings |This cleans the distorted layer without choking the clean low path.
+|Sustains or harmonics get cut off |Bypass the Utility Gate, or use Threshold -62 dB, Release 110 ms, Range -35 dB |Bass sustain is more important than guitar-style hard gating. The gate should only clean the dirty path when needed.
 |===
